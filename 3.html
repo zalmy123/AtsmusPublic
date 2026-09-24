@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ATSMUS AeroTech | Assured GPS-Denied Navigation & Cellular Airspace Defense</title>
+  <meta name="description" content="Field-proven cellular airspace solutions for Defense, Homeland Security, and Autonomous Tactical UAS. Unjammable GPS-grade navigation beyond GNSS, zero-emission passive drone radar, and rogue cell counter-surveillance." />
+
+  <!-- Premium Aerospace Typography: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Three.js for 3D Tactical Surround Hero -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            aero: {
+              void: '#04060A',
+              slateDark: '#080C14',
+              surface: '#0D1322',
+              card: 'rgba(13, 19, 34, 0.72)',
+              border: 'rgba(255, 255, 255, 0.09)',
+              borderLight: 'rgba(255, 255, 255, 0.18)',
+              orange: '#FF5511',
+              orangeGlow: 'rgba(255, 85, 17, 0.35)',
+              cyan: '#00E5FF',
+              emerald: '#10B981',
+              muted: '#8593A8'
+            },
+            brand: {
+              void: '#020408',
+              surface: '#050913',
+              panel: '#090E1A',
+              cyan: '#00E5FF',
+              amber: '#FF9900',
+              emerald: '#10B981'
+            }
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          letterSpacing: {
+            tactical: '0.22em',
+            extreme: '0.34em',
+            widestPlus: '0.24em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      background-color: #04060A;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .glass-nav {
+      background: rgba(4, 6, 10, 0.88);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-nav.scrolled {
+      background: rgba(4, 6, 10, 0.96);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.16);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-glow-radial {
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% -15%, rgba(0, 229, 255, 0.15) 0%, rgba(255, 85, 17, 0.05) 45%, rgba(4, 6, 10, 0) 80%),
+        radial-gradient(circle at 85% 35%, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+    }
+
+    .heven-card {
+      background: linear-gradient(180deg, rgba(16, 24, 42, 0.72) 0%, rgba(8, 12, 22, 0.92) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .heven-card:hover {
+      border-color: rgba(255, 85, 17, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 35px -8px rgba(255, 85, 17, 0.22);
+    }
+
+    .grid-lines {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    .tab-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      transition: width 0.08s linear;
+    }
+
+    .tactical-bracket {
+      position: relative;
+    }
+    .tactical-bracket::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #FF5511;
+      border-left: 2px solid #FF5511;
+    }
+    .tactical-bracket::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-bottom: 2px solid #00E5FF;
+      border-right: 2px solid #00E5FF;
+    }
+
+    /* Scroll-triggered reveal animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Realistic Motion Schematics for Defense UAS Sections */
+    @keyframes droneFlightVector {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(6px, -8px) rotate(1.2deg); }
+      50% { transform: translate(-4px, -14px) rotate(-0.8deg); }
+      75% { transform: translate(-8px, -6px) rotate(-1.5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    .animate-drone-vector {
+      animation: droneFlightVector 9s ease-in-out infinite;
+    }
+
+    @keyframes radarBistaticSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-bistatic-sweep {
+      animation: radarBistaticSweep 7s linear infinite;
+      transform-origin: 150px 150px;
+    }
+
+    @keyframes vectorSignalFlow {
+      0% { stroke-dashoffset: 60; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .animate-signal-flow {
+      stroke-dasharray: 6 4;
+      animation: vectorSignalFlow 1.8s linear infinite;
+    }
+
+    @keyframes microDopplerPulse {
+      0%, 100% { opacity: 0.35; transform: scaleY(0.7); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    .animate-doppler-1 { animation: microDopplerPulse 1.2s ease-in-out infinite; transform-origin: bottom; }
+    .animate-doppler-2 { animation: microDopplerPulse 1.5s ease-in-out infinite 0.2s; transform-origin: bottom; }
+    .animate-doppler-3 { animation: microDopplerPulse 1.1s ease-in-out infinite 0.4s; transform-origin: bottom; }
+
+    @keyframes perimeterPulse {
+      0% { r: 35; opacity: 0.8; }
+      100% { r: 90; opacity: 0; }
+    }
+    .animate-perimeter-pulse {
+      animation: perimeterPulse 3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #04060A; }
+    ::-webkit-scrollbar-thumb { background: #182238; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #FF5511; }
+  </style>
+</head>
+
+<body class="selection:bg-aero-orange selection:text-white">
+
+  <!-- Tactical Scroll Progress Bar -->
+  <div id="scrollProgress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-aero-cyan via-blue-500 to-aero-orange z-[60] transition-all duration-75" style="width: 0%;"></div>
+
+  <div class="fixed inset-0 grid-lines pointer-events-none z-0"></div>
+
+  <!-- ================================================================
+       1. NAVIGATION WITH CLEAN OFFICIAL ATSMUS LOGO
+       ================================================================ -->
+  <header id="siteHeader" class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo (Pure ATSMUS Aerospace Emblem + Modern Wordmark) -->
+      <a href="#" class="flex items-center space-x-3 group py-1.5 focus:outline-none">
+        <svg class="w-8 h-8 text-aero-cyan transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 3L32 29L18 22L4 29L18 3Z" stroke="#00E5FF" stroke-width="2.2" stroke-linejoin="round" fill="rgba(0, 229, 255, 0.09)"/>
+          <path d="M18 10L26 25L18 21L10 25L18 10Z" fill="#00E5FF" fill-opacity="0.28"/>
+          <circle cx="18" cy="14" r="2.2" fill="#00E5FF"/>
+          <line x1="18" y1="14" x2="18" y2="28" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="2 2"/>
+        </svg>
+        <span class="font-display font-semibold text-2xl tracking-tight text-white group-hover:text-aero-cyan transition-colors">
+          Atsmus<span class="text-aero-cyan font-bold">.</span>
+        </span>
+      </a>
+
+      <!-- Direct Header Links -->
+      <nav class="hidden lg:flex items-center space-x-8 text-xs font-mono uppercase tracking-tactical text-slate-300">
+        <a href="#missions" class="hover:text-aero-cyan transition-colors">Missions</a>
+        <a href="#platform" class="hover:text-aero-cyan transition-colors">Platforms</a>
+        <a href="#trials" class="hover:text-white transition-colors">Flight Heritage</a>
+        <a href="#leadership" class="hover:text-white transition-colors">Leadership</a>
+        <a href="#contact" class="text-aero-cyan hover:text-white transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-aero-cyan animate-pulse"></span>
+          <span>Request Access</span>
+        </a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center space-x-4">
+        <a href="#contact" class="px-5 sm:px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs font-mono uppercase tracking-wider hover:bg-aero-cyan hover:text-black hover:shadow-xl hover:shadow-aero-cyan/30 transition-all duration-300 inline-flex items-center space-x-2">
+          <span>Access TDP</span>
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================================
+       2. CINEMATIC HERO (CLEAN, FITS VIEWPORT, DRONE UNTOUCHED)
+       ================================================================ -->
+  <section class="relative min-h-[100dvh] lg:h-[100dvh] flex items-center pt-20 sm:pt-24 pb-8 sm:pb-10 overflow-hidden hero-glow-radial z-10">
+    
+    <!-- 3D HIGH-FIDELITY TACTICAL SURROUND CANVAS (DRONE ON RIGHT - UNTOUCHED) -->
+    <div id="threeHeroCanvas" class="absolute inset-0 z-0 pointer-events-none"></div>
+
+    <!-- Soft Ambient Left Fade Scrim: Deepened for pristine legibility behind text, smoothly fading before the 3D drone on right -->
+    <div class="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-aero-void via-[#04060A]/95 sm:via-[#04060A]/85 to-transparent pointer-events-none z-10"></div>
+    <div class="absolute inset-y-0 left-0 w-full sm:w-[50%] pointer-events-none z-10 opacity-75" style="background: radial-gradient(ellipse 70% 80% at 20% 50%, rgba(4,6,10,0.95) 0%, rgba(4,6,10,0.65) 60%, transparent 100%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 w-full relative z-20 my-auto">
+      
+      <!-- HERO CONTENT CONTAINER (SPACED, CLEAN, FITS ABOVE THE FOLD) -->
+      <div class="w-full lg:w-[62%] flex flex-col items-start text-left relative z-20 py-2">
+        
+        <!-- Main Anchor Headline: Direct, Crisp, High-Impact & Spaced -->
+        <h1 class="font-display font-light text-3xl sm:text-5xl lg:text-[50px] xl:text-[56px] tracking-[-0.03em] text-white leading-[1.12] mb-2 sm:mb-3 drop-shadow-md">
+          Where there's a signal, there's a way.
+        </h1>
+
+        <!-- Animated Rotating Strategic Headline (Clean, Fixed Height, No Page Jumps) -->
+        <div class="h-[48px] sm:h-[62px] lg:h-[70px] w-full flex items-center overflow-hidden mb-3 sm:mb-5">
+          <h2 id="rotatingHeadline" class="font-display font-semibold text-2xl sm:text-4xl lg:text-[42px] xl:text-[48px] tracking-tight text-aero-cyan transition-all duration-400 transform translate-y-0 opacity-100 leading-tight py-0.5 drop-shadow-lg">
+            GPS-Denied Autonomy.
+          </h2>
+        </div>
+
+        <!-- Strategic Positioning Sub-Headline: Clean, Spacious, Highly Legible -->
+        <p class="text-sm sm:text-base lg:text-lg text-slate-300/95 font-light max-w-xl leading-relaxed mb-6 sm:mb-8 tracking-normal drop-shadow-sm">
+          Turning ambient cellular signals into unjammable navigation and silent airspace sensing for UAVs in contested environments.
+        </p>
+
+        <!-- Single Primary CTA Action Button -->
+        <div class="pt-1 flex items-center">
+          <a href="#contact" class="px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-aero-cyan text-black font-semibold text-xs sm:text-sm font-mono uppercase tracking-widest hover:bg-white hover:shadow-2xl hover:shadow-aero-cyan/30 hover:scale-[1.02] transition-all inline-flex items-center space-x-2.5 group cursor-pointer shadow-lg shadow-aero-cyan/20">
+            <span>Request Evaluation Kit</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Subtle Downward Scroll Indicator -->
+    <a href="#pillars" id="heroScrollCue" class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1.5 text-slate-400 hover:text-aero-cyan transition-all opacity-80 hover:opacity-100">
+      <span class="text-[10px] font-mono tracking-widest uppercase">Explore System</span>
+      <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce text-aero-cyan"></i>
+    </a>
+  </section>
+
+  <!-- ================================================================
+       2.5. 4-PILLAR ARCHITECTURAL RIBBON (CLEANLY POSITIONED BELOW HERO)
+       ================================================================ -->
+  <section id="pillars" class="relative z-20 max-w-7xl mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-20 sm:pb-24">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+      
+      <!-- 01 / ZERO-EMISSION STEALTH -->
+      <div class="heven-card p-6 sm:p-7 rounded-2xl tactical-bracket relative overflow-hidden group reveal-on-scroll">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-aero-orange font-mono text-[11px] font-bold tracking-tactical uppercase">01 / ZERO EMISSION</span>
+          <i data-lucide="radio" class="w-4 h-4 text-aero-orange/60 group-hover:text-aero-orange transition-colors"></i>
+        </div>
+        <div class="font-display text-white font-medium text-lg sm:text-xl mb-2">100% Passive Stealth</div>
+        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+          Zero RF signature. Undetectable to adversarial radar-warning receivers and electronic surveillance.
+        </p>
+      </div>
+
+      <!-- 02 / SIGNALS OF OPPORTUNITY -->
+      <div class="heven-card p-6 sm:p-7 rounded-2xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 100ms;">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-aero-cyan font-mono text-[11px] font-bold tracking-tactical uppercase">02 / NON-COOPERATIVE</span>
+          <i data-lucide="compass" class="w-4 h-4 text-aero-cyan/60 group-hover:text-aero-cyan transition-colors"></i>
+        </div>
+        <div class="font-display text-white font-medium text-lg sm:text-xl mb-2">Signals of Opportunity</div>
+        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+          Navigates over unmapped or austere cellular infrastructure — no telecom coordination required.
+        </p>
+      </div>
+
+      <!-- 03 / MOSA ALIGNED INTEGRATION -->
+      <div class="heven-card p-6 sm:p-7 rounded-2xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 200ms;">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-aero-emerald font-mono text-[11px] font-bold tracking-tactical uppercase">03 / MOSA ALIGNED</span>
+          <i data-lucide="cpu" class="w-4 h-4 text-aero-emerald/60 group-hover:text-aero-emerald transition-colors"></i>
+        </div>
+        <div class="font-display text-white font-medium text-lg sm:text-xl mb-2">Universal Autopilot Bus</div>
+        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+          Native MAVLink, ROS 2, PX4, ArduPilot &amp; ATAK — zero firmware rewrite.
+        </p>
+      </div>
+
+      <!-- 04 / SWaP-C OPTIMIZED -->
+      <div class="heven-card p-6 sm:p-7 rounded-2xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 300ms;">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-blue-400 font-mono text-[11px] font-bold tracking-tactical uppercase">04 / LOW SWaP-C</span>
+          <i data-lucide="shield-check" class="w-4 h-4 text-blue-400/60 group-hover:text-blue-400 transition-colors"></i>
+        </div>
+        <div class="font-display text-white font-medium text-lg sm:text-xl mb-2">Tactical Fleet Scale</div>
+        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+          Engineered for Group 1–3 UAS and loitering munitions — minimal weight, full mission endurance.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       3. MISSION SECTORS — DYNAMIC VECTOR MOTION AIRSPACE EFFECTS
+       ================================================================ -->
+  <section id="missions" class="py-20 sm:py-28 relative z-10 border-t border-white/[0.08] bg-aero-slateDark/50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6 reveal-on-scroll">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-aero-orange font-mono text-xs uppercase tracking-tactical mb-4">
+            <span class="w-2 h-2 rounded-full bg-aero-orange"></span>
+            <span>Where We Operate</span>
+          </div>
+          <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight">
+            Built for contested airspace
+          </h2>
+        </div>
+        <p class="text-aero-muted text-sm sm:text-base font-light max-w-sm">
+          One signal architecture, three mission-ready effects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- CARD 1: DoD Tactical UAS / Navigate through jamming (Tactical Fixed-Wing Drone CAD & Cellular Penetration) -->
+        <div class="rounded-3xl overflow-hidden tactical-bracket relative group min-h-[460px] flex flex-col justify-end bg-aero-void border border-white/10 hover:border-aero-orange/60 transition-all duration-500 reveal-on-scroll">
+          
+          <!-- PROFESSIONAL VECTOR MOTION SCHEMATIC BACKGROUND -->
+          <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-45 group-hover:opacity-80 transition-opacity duration-500">
+            <!-- Dynamic Vector Drone CAD Illustration -->
+            <svg class="absolute top-2 right-0 w-[310px] h-[310px] animate-drone-vector text-aero-orange" viewBox="0 0 320 320" fill="none">
+              <defs>
+                <linearGradient id="droneGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FF5511" stop-opacity="0.85" />
+                  <stop offset="100%" stop-color="#FF5511" stop-opacity="0.1" />
+                </linearGradient>
+                <radialGradient id="jammingCloud" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#EF4444" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#EF4444" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- EW Jamming Interference Zone -->
+              <circle cx="210" cy="110" r="85" fill="url(#jammingCloud)" />
+              <path d="M140 100 Q 180 60, 260 110" stroke="#EF4444" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.45"/>
+              <path d="M150 120 Q 200 80, 270 130" stroke="#EF4444" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.35"/>
+
+              <!-- Opportunistic Cellular Towers (Ground Nodes) -->
+              <g transform="translate(45, 220)">
+                <path d="M0 45 L15 0 L30 45 Z" stroke="#64748B" stroke-width="1.4" fill="rgba(100,116,139,0.1)"/>
+                <line x1="15" y1="0" x2="15" y2="45" stroke="#64748B" stroke-width="1"/>
+                <circle cx="15" cy="0" r="3" fill="#00E5FF"/>
+                <!-- Cellular Navigation Vectors penetrating through jamming straight into drone payload -->
+                <line x1="15" y1="0" x2="155" y2="-100" stroke="#00E5FF" stroke-width="1.8" class="animate-signal-flow"/>
+                <circle cx="15" cy="0" r="18" stroke="#00E5FF" stroke-width="1" opacity="0.3"/>
+              </g>
+
+              <g transform="translate(190, 240)">
+                <path d="M0 35 L12 0 L24 35 Z" stroke="#64748B" stroke-width="1.2"/>
+                <circle cx="12" cy="0" r="2.5" fill="#FF5511"/>
+                <line x1="12" y1="0" x2="10" y2="-120" stroke="#FF5511" stroke-width="1.5" class="animate-signal-flow"/>
+              </g>
+
+              <!-- High-Fidelity Tactical Drone CAD Wireframe (Delta-Wing / Group 2 UAS) -->
+              <g transform="translate(140, 70)">
+                <!-- Main Fuselage Body -->
+                <path d="M60 10 L68 45 L68 120 L60 130 L52 120 L52 45 Z" stroke="url(#droneGradOrange)" stroke-width="1.8" fill="rgba(15,23,42,0.6)"/>
+                <!-- Swept Tactical Wings with Airfoil Stations -->
+                <path d="M60 45 L145 105 L140 120 L68 100 Z" stroke="#FF5511" stroke-width="1.5" fill="rgba(255,85,17,0.06)"/>
+                <path d="M60 45 L-25 105 L-20 120 L52 100 Z" stroke="#FF5511" stroke-width="1.5" fill="rgba(255,85,17,0.06)"/>
+                <!-- Wing Rib Spars -->
+                <line x1="85" y1="63" x2="88" y2="104" stroke="#FF5511" stroke-width="1" opacity="0.5"/>
+                <line x1="115" y1="84" x2="116" y2="112" stroke="#FF5511" stroke-width="1" opacity="0.5"/>
+                <line x1="35" y1="63" x2="32" y2="104" stroke="#FF5511" stroke-width="1" opacity="0.5"/>
+                <line x1="5" y1="84" x2="4" y2="112" stroke="#FF5511" stroke-width="1" opacity="0.5"/>
+                <!-- Twin Canted Vertical Stabilizers -->
+                <line x1="52" y1="100" x2="44" y2="128" stroke="#FF5511" stroke-width="1.8"/>
+                <line x1="68" y1="100" x2="76" y2="128" stroke="#FF5511" stroke-width="1.8"/>
+                <!-- Pusher Propeller Disc -->
+                <ellipse cx="60" cy="132" rx="22" ry="4" stroke="#00E5FF" stroke-width="1.2" stroke-dasharray="2 2"/>
+                <!-- ATSMUS AIR Cellular Positioning Payload Lock Point -->
+                <circle cx="60" cy="72" r="5" fill="#00E5FF" class="animate-ping"/>
+                <circle cx="60" cy="72" r="4.5" fill="#00E5FF"/>
+                <!-- Tactical Gimbal Nose Sensor -->
+                <circle cx="60" cy="16" r="3.5" stroke="#FF5511" stroke-width="1.5"/>
+                <!-- HUD Flight Vector Crosshair -->
+                <circle cx="60" cy="72" r="28" stroke="#00E5FF" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+              </g>
+
+              <!-- Real-Time Flight Telemetry Vector Callouts -->
+              <g transform="translate(10, 24)" font-family="JetBrains Mono" font-size="8" fill="#FF5511" opacity="0.75">
+                <text x="0" y="0">GNSS_JAM_DETECTED: 1.575 GHz</text>
+                <text x="0" y="11" fill="#00E5FF">ATSMUS_AIR_PNT: ACTIVE [FIX: LOCKED]</text>
+                <text x="0" y="22" fill="#94A3B8">3D_VECTOR: HEADING 042° // 48 m/s</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t from-aero-void via-aero-void/80 to-transparent z-10"></div>
+
+          <div class="relative z-20 p-8">
+            <span class="text-[10px] font-mono text-aero-orange uppercase tracking-wider">01 / DoD Tactical UAS</span>
+            <h3 class="font-display text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-orange transition-colors">Navigate through jamming</h3>
+            <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">GPS-grade autonomy that holds when satellite signal is spoofed, jammed, or simply absent.</p>
+            <button onclick="goToPlatform(0)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-orange font-semibold inline-flex items-center space-x-2 transition-colors cursor-pointer focus:outline-none">
+              <span>Explore Atsmus Air</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARD 2: DHS & Border Security / See what emits nothing (Passive Bistatic Radar & Micro-Doppler Rotor Blades) -->
+        <div class="rounded-3xl overflow-hidden tactical-bracket relative group min-h-[460px] flex flex-col justify-end bg-aero-void border border-white/10 hover:border-aero-cyan/60 transition-all duration-500 reveal-on-scroll" style="transition-delay: 150ms;">
+          
+          <!-- PROFESSIONAL VECTOR MOTION SCHEMATIC BACKGROUND -->
+          <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-45 group-hover:opacity-80 transition-opacity duration-500">
+            <!-- Dynamic Bistatic Radar & Covert Quadcopter Track -->
+            <svg class="absolute top-2 right-0 w-[310px] h-[310px] text-aero-cyan" viewBox="0 0 320 320" fill="none">
+              <defs>
+                <linearGradient id="radarSweepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#00E5FF" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+
+              <!-- Bistatic Radar Origin (Ambient Commercial Base Station) -->
+              <g transform="translate(40, 60)">
+                <line x1="0" y1="0" x2="20" y2="40" stroke="#64748B" stroke-width="1.2"/>
+                <line x1="20" y1="40" x2="40" y2="0" stroke="#64748B" stroke-width="1.2"/>
+                <circle cx="20" cy="10" r="3" fill="#64748B"/>
+                <!-- Forward Scatter Illumination Wave to Target -->
+                <path d="M25 15 Q 110 50, 195 85" stroke="#00E5FF" stroke-width="1.4" stroke-dasharray="4 4" class="animate-signal-flow"/>
+                <circle cx="20" cy="10" r="28" stroke="#00E5FF" stroke-width="0.8" opacity="0.25"/>
+              </g>
+
+              <!-- Radar Polar Grid & Range Rings -->
+              <g transform="translate(150, 150)">
+                <circle cx="0" cy="0" r="40" stroke="#00E5FF" stroke-width="1" stroke-dasharray="2 3" opacity="0.3"/>
+                <circle cx="0" cy="0" r="85" stroke="#00E5FF" stroke-width="1" opacity="0.25"/>
+                <circle cx="0" cy="0" r="130" stroke="#00E5FF" stroke-width="0.8" stroke-dasharray="6 4" opacity="0.2"/>
+                <!-- Cross-hairs -->
+                <line x1="-140" y1="0" x2="140" y2="0" stroke="#00E5FF" stroke-width="0.7" opacity="0.3"/>
+                <line x1="0" y1="-140" x2="0" y2="140" stroke="#00E5FF" stroke-width="0.7" opacity="0.3"/>
+                <!-- Sweeping Radar Beam (Passive Listener) -->
+                <g class="animate-bistatic-sweep">
+                  <line x1="0" y1="0" x2="135" y2="0" stroke="#00E5FF" stroke-width="1.8"/>
+                  <polygon points="0,0 135,0 120,40" fill="url(#radarSweepGrad)"/>
+                </g>
+              </g>
+
+              <!-- Passive Bistatic Receiver Node (0.00W Emission) -->
+              <g transform="translate(80, 240)">
+                <rect x="0" y="0" width="28" height="20" rx="3" stroke="#00E5FF" stroke-width="1.4" fill="rgba(0,229,255,0.1)"/>
+                <line x1="14" y1="0" x2="14" y2="-12" stroke="#00E5FF" stroke-width="1.4"/>
+                <circle cx="14" cy="-12" r="2.5" fill="#00E5FF"/>
+                <!-- Reflected Echo Wave Returning from Drone -->
+                <path d="M14 0 Q 120 120, 205 98" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5 3" class="animate-signal-flow"/>
+                <text x="-12" y="32" font-family="JetBrains Mono" font-size="7" fill="#00E5FF">PDDR SENSOR (0.0W)</text>
+              </g>
+
+              <!-- Detailed Vector Covert Multi-Rotor Target Track -->
+              <g transform="translate(205, 95)" class="animate-drone-vector">
+                <!-- Target Reticle Lock Box -->
+                <rect x="-24" y="-24" width="48" height="48" stroke="#FF5511" stroke-width="1.5" fill="rgba(255,85,17,0.06)"/>
+                <line x1="-24" y1="-12" x2="-24" y2="-24" stroke="#FF5511" stroke-width="2"/>
+                <line x1="-12" y1="-24" x2="-24" y2="-24" stroke="#FF5511" stroke-width="2"/>
+                <line x1="24" y1="12" x2="24" y2="24" stroke="#FF5511" stroke-width="2"/>
+                <line x1="12" y1="24" x2="24" y2="24" stroke="#FF5511" stroke-width="2"/>
+                
+                <!-- Quadcopter Drone Airframe -->
+                <circle cx="0" cy="0" r="7" fill="#0D1322" stroke="#00E5FF" stroke-width="1.5"/>
+                <!-- 4 Rotor Arms -->
+                <line x1="-16" y1="-16" x2="16" y2="16" stroke="#00E5FF" stroke-width="2"/>
+                <line x1="16" y1="-16" x2="-16" y2="16" stroke="#00E5FF" stroke-width="2"/>
+                <!-- Rotor Blades & Tip Vortices (Micro-Doppler Harmonics) -->
+                <ellipse cx="-16" cy="-16" rx="9" ry="3" stroke="#00E5FF" stroke-width="1.2" class="animate-spin" style="transform-origin: -16px -16px;"/>
+                <ellipse cx="16" cy="-16" rx="9" ry="3" stroke="#00E5FF" stroke-width="1.2" class="animate-spin" style="transform-origin: 16px -16px;"/>
+                <ellipse cx="-16" cy="16" rx="9" ry="3" stroke="#00E5FF" stroke-width="1.2" class="animate-spin" style="transform-origin: -16px 16px;"/>
+                <ellipse cx="16" cy="16" rx="9" ry="3" stroke="#00E5FF" stroke-width="1.2" class="animate-spin" style="transform-origin: 16px 16px;"/>
+                <circle cx="0" cy="0" r="3" fill="#FF5511" class="animate-pulse"/>
+              </g>
+
+              <!-- Micro-Doppler Spectral Waterfall Graphic -->
+              <g transform="translate(200, 220)">
+                <rect x="0" y="0" width="80" height="40" stroke="#00E5FF" stroke-width="0.8" fill="rgba(4,6,10,0.85)"/>
+                <line x1="10" y1="35" x2="10" y2="15" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-1"/>
+                <line x1="20" y1="35" x2="20" y2="10" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-2"/>
+                <line x1="30" y1="35" x2="30" y2="20" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-3"/>
+                <line x1="40" y1="35" x2="40" y2="8" stroke="#FF5511" stroke-width="2.5" class="animate-doppler-1"/>
+                <line x1="50" y1="35" x2="50" y2="18" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-2"/>
+                <line x1="60" y1="35" x2="60" y2="24" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-3"/>
+                <line x1="70" y1="35" x2="70" y2="12" stroke="#00E5FF" stroke-width="2.5" class="animate-doppler-1"/>
+                <text x="5" y="-5" font-family="JetBrains Mono" font-size="6.5" fill="#00E5FF">ROTOR_MICRO_DOPPLER</text>
+              </g>
+
+              <g transform="translate(10, 24)" font-family="JetBrains Mono" font-size="8" fill="#00E5FF" opacity="0.85">
+                <text x="0" y="0">RADAR_MODE: PASSIVE BISTATIC</text>
+                <text x="0" y="11" fill="#10B981">RF_SIGNATURE: 0.00 W // COVERT</text>
+                <text x="0" y="22" fill="#FF5511">TARGET: MICRO-UAS [TRACKED]</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t from-aero-void via-aero-void/80 to-transparent z-10"></div>
+
+          <div class="relative z-20 p-8">
+            <span class="text-[10px] font-mono text-aero-cyan uppercase tracking-wider">02 / DHS &amp; Border Security</span>
+            <h3 class="font-display text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-cyan transition-colors">See what emits nothing</h3>
+            <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">Passive radar tracks low-altitude drones off ambient signal — zero transmission, zero exposure.</p>
+            <button onclick="goToPlatform(1)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-cyan font-semibold inline-flex items-center space-x-2 transition-colors cursor-pointer focus:outline-none">
+              <span>Explore PDDR</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARD 3: Bases & Infrastructure / Protect the perimeter (3D Airfield Isometric Dome & Rogue Triangulation) -->
+        <div class="rounded-3xl overflow-hidden tactical-bracket relative group min-h-[460px] flex flex-col justify-end bg-aero-void border border-white/10 hover:border-aero-emerald/60 transition-all duration-500 reveal-on-scroll" style="transition-delay: 300ms;">
+          
+          <!-- PROFESSIONAL VECTOR MOTION SCHEMATIC BACKGROUND -->
+          <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-45 group-hover:opacity-80 transition-opacity duration-500">
+            <!-- Dynamic 3D Isometric Airbase & Geofence Shield -->
+            <svg class="absolute top-2 right-0 w-[310px] h-[310px] text-aero-emerald" viewBox="0 0 320 320" fill="none">
+              <defs>
+                <linearGradient id="shieldDomeGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.25" />
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0.02" />
+                </linearGradient>
+              </defs>
+
+              <!-- 3D Isometric Runway & Installation Facilities -->
+              <g transform="translate(50, 160)">
+                <!-- Airfield Main Runway Strip -->
+                <polygon points="0,55 130,0 210,35 80,90" fill="rgba(15,23,42,0.7)" stroke="#10B981" stroke-width="1.2"/>
+                <!-- Runway Centerline -->
+                <line x1="15" y1="50" x2="195" y2="28" stroke="#10B981" stroke-width="1.4" stroke-dasharray="6 4" opacity="0.6"/>
+                <!-- Taxiways & Hangar Footprints -->
+                <polygon points="40,25 75,10 95,20 60,35" stroke="#10B981" stroke-width="0.8" fill="rgba(16,185,129,0.06)"/>
+                <polygon points="90,4 120,-10 140,-2 110,12" stroke="#10B981" stroke-width="0.8" fill="rgba(16,185,129,0.06)"/>
+              </g>
+
+              <!-- Hemispherical Cellular Geofence Defense Dome -->
+              <g transform="translate(160, 175)">
+                <!-- Elliptical Ground Boundary -->
+                <ellipse cx="0" cy="0" rx="125" ry="50" stroke="#10B981" stroke-width="1.4" stroke-dasharray="4 3"/>
+                <!-- Geofence Elevation Arcs (0-500m AGL) -->
+                <path d="M -125 0 A 125 110 0 0 1 125 0" stroke="#10B981" stroke-width="1.5" fill="url(#shieldDomeGrad)"/>
+                <path d="M -90 0 A 90 80 0 0 1 90 0" stroke="#10B981" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+                <path d="M -55 0 A 55 50 0 0 1 55 0" stroke="#10B981" stroke-width="1" opacity="0.3"/>
+                <!-- Central Airspace Defense Apex -->
+                <line x1="0" y1="-110" x2="0" y2="0" stroke="#10B981" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+                <circle cx="0" cy="-110" r="3.5" fill="#10B981"/>
+                <!-- Pulsing Security Dome Wave -->
+                <circle cx="0" cy="0" r="35" stroke="#10B981" stroke-width="1.2" fill="none" class="animate-perimeter-pulse"/>
+              </g>
+
+              <!-- Sentinel EW Multi-Point Triangulation Sensors -->
+              <g transform="translate(70, 185)">
+                <circle cx="0" cy="0" r="4" fill="#10B981"/>
+                <line x1="0" y1="0" x2="165" y2="-75" stroke="#10B981" stroke-width="1.2" class="animate-signal-flow"/>
+                <text x="-15" y="14" font-family="JetBrains Mono" font-size="6.5" fill="#10B981">SENTINEL_NODE_A</text>
+              </g>
+
+              <g transform="translate(245, 160)">
+                <circle cx="0" cy="0" r="4" fill="#10B981"/>
+                <line x1="0" y1="0" x2="-10" y2="-50" stroke="#10B981" stroke-width="1.2" class="animate-signal-flow"/>
+                <text x="-25" y="14" font-family="JetBrains Mono" font-size="6.5" fill="#10B981">SENTINEL_NODE_B</text>
+              </g>
+
+              <g transform="translate(170, 245)">
+                <circle cx="0" cy="0" r="4" fill="#10B981"/>
+                <line x1="0" y1="0" x2="65" y2="-135" stroke="#10B981" stroke-width="1.2" class="animate-signal-flow"/>
+              </g>
+
+              <!-- Hostile Rogue Transmitter (IMSI Catcher / Spoofer Pinpointed) -->
+              <g transform="translate(235, 110)">
+                <circle cx="0" cy="0" r="14" stroke="#EF4444" stroke-width="1.2" class="animate-ping"/>
+                <circle cx="0" cy="0" r="5" fill="#EF4444"/>
+                <rect x="-8" y="-8" width="16" height="16" stroke="#EF4444" stroke-width="1.5" fill="none"/>
+                <!-- Coordinates Alert Tag -->
+                <rect x="12" y="-12" width="68" height="18" fill="rgba(4,6,10,0.85)" stroke="#EF4444" stroke-width="1"/>
+                <text x="16" y="0" font-family="JetBrains Mono" font-size="6.5" fill="#EF4444">ROGUE_IMSI_CELL</text>
+              </g>
+
+              <g transform="translate(10, 24)" font-family="JetBrains Mono" font-size="8" fill="#10B981" opacity="0.85">
+                <text x="0" y="0">PERIMETER_DOME: 360° ACTIVE</text>
+                <text x="0" y="11" fill="#00E5FF">COVERAGE: 0 TO 500m+ AGL</text>
+                <text x="0" y="22" fill="#EF4444">COUNTER-EW: SPOOFER GEOLOCATED</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t from-aero-void via-aero-void/80 to-transparent z-10"></div>
+
+          <div class="relative z-20 p-8">
+            <span class="text-[10px] font-mono text-aero-emerald uppercase tracking-wider">03 / Bases &amp; Infrastructure</span>
+            <h3 class="font-display text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-emerald transition-colors">Protect the perimeter</h3>
+            <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">Continuous low-altitude coverage around airfields and critical infrastructure — no spectrum license required.</p>
+            <button onclick="goToPlatform(2)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-emerald font-semibold inline-flex items-center space-x-2 transition-colors cursor-pointer focus:outline-none">
+              <span>Explore Sentinel</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       5. THE READY PLATFORMS (AUTO-ADVANCE & SIMULATION HUD)
+       ================================================================ -->
+  <section id="platform" class="py-24 sm:py-32 relative z-10 border-t border-white/[0.08] bg-aero-slateDark/40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6 reveal-on-scroll">
+        <div>
+          <div class="text-xs font-mono text-aero-cyan uppercase tracking-widest mb-3 font-semibold">Deployment Ready</div>
+          <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight">
+            Software-Defined Airspace Platforms
+          </h2>
+        </div>
+
+        <!-- Manual Controls -->
+        <div class="flex items-center space-x-4">
+          <button onclick="prevPlatform()" aria-label="Previous Platform" class="w-12 h-12 rounded-full bg-white/[0.04] border border-white/15 hover:border-aero-orange hover:text-aero-orange text-white flex items-center justify-center transition-all cursor-pointer">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="nextPlatform()" aria-label="Next Platform" class="w-12 h-12 rounded-full bg-white/[0.04] border border-white/15 hover:border-aero-orange hover:text-aero-orange text-white flex items-center justify-center transition-all cursor-pointer">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Buttons with Automated Fill Lines -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 reveal-on-scroll" id="carouselTabs">
+        
+        <button onclick="setPlatform(0)" id="tabBtn0" class="relative overflow-hidden p-4 rounded-2xl bg-white/[0.03] border border-white/15 text-left transition-all group cursor-pointer">
+          <div class="tab-progress bg-aero-orange" id="progress0"></div>
+          <div class="text-[10px] font-mono text-aero-muted uppercase mb-1">01 / GPS-DENIED PNT</div>
+          <div class="font-display text-sm sm:text-base font-semibold text-white group-hover:text-aero-orange transition-colors">ATSMUS AIR™</div>
+        </button>
+
+        <button onclick="setPlatform(1)" id="tabBtn1" class="relative overflow-hidden p-4 rounded-2xl bg-white/[0.02] border border-white/10 text-left transition-all group cursor-pointer">
+          <div class="tab-progress bg-aero-cyan" id="progress1"></div>
+          <div class="text-[10px] font-mono text-aero-muted uppercase mb-1">02 / COVERT C-UAS</div>
+          <div class="font-display text-sm sm:text-base font-semibold text-white group-hover:text-aero-cyan transition-colors">ATSMUS PDDR™</div>
+        </button>
+
+        <button onclick="setPlatform(2)" id="tabBtn2" class="relative overflow-hidden p-4 rounded-2xl bg-white/[0.02] border border-white/10 text-left transition-all group cursor-pointer">
+          <div class="tab-progress bg-aero-emerald" id="progress2"></div>
+          <div class="text-[10px] font-mono text-aero-muted uppercase mb-1">03 / COUNTER-INTEL</div>
+          <div class="font-display text-sm sm:text-base font-semibold text-white group-hover:text-aero-emerald transition-colors">SENTINEL™</div>
+        </button>
+
+        <button onclick="setPlatform(3)" id="tabBtn3" class="relative overflow-hidden p-4 rounded-2xl bg-white/[0.02] border border-white/10 text-left transition-all group cursor-pointer">
+          <div class="tab-progress bg-blue-400" id="progress3"></div>
+          <div class="text-[10px] font-mono text-aero-muted uppercase mb-1">04 / 3D SPECTRUM TWIN</div>
+          <div class="font-display text-sm sm:text-base font-semibold text-white group-hover:text-blue-400 transition-colors">AIRT™ ENGINE</div>
+        </button>
+
+      </div>
+
+      <!-- MAIN PLATFORM CARD -->
+      <div id="carouselWrapper" class="heven-card p-8 sm:p-12 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[560px] reveal-on-scroll">
+        
+        <!-- Left Platform Information -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-semibold uppercase tracking-wider" id="platformBadge">
+            DEFENSE ARCHITECTURE • MOSA COMPLIANT
+          </div>
+          
+          <h3 class="font-display text-4xl sm:text-5xl text-white font-light" id="platformTitle">
+            ATSMUS AIR™
+          </h3>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light max-w-lg" id="platformDesc">
+            Plug-and-play positioning payload that provides immediate, GPS-grade navigation for tactical UAVs using ambient cellular signals when GPS is denied, jammed, or spoofed.
+          </p>
+
+          <!-- Spec Badges -->
+          <div class="grid grid-cols-3 gap-3 font-mono text-xs pt-2" id="platformStats">
+            <!-- Populated via JS -->
+          </div>
+
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a href="#contact" class="px-8 py-3.5 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-aero-orange hover:text-white transition-all flex items-center space-x-2">
+              <span>Request TDP</span>
+              <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            </a>
+            <span class="text-xs font-mono text-aero-muted">Native MAVLink, ROS 2 &amp; ATAK Link</span>
+          </div>
+        </div>
+
+        <!-- Right Tactical Motion Canvas -->
+        <div class="lg:col-span-6 aspect-[16/11] rounded-2xl bg-aero-void border border-white/10 relative overflow-hidden flex items-center justify-center p-4">
+          <canvas id="serviceCanvas" class="w-full h-full"></canvas>
+          
+          <!-- Live Telemetry Pill -->
+          <div class="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-aero-surface/90 border border-white/10 text-[10px] font-mono flex items-center space-x-2" id="canvasStatus">
+            <span class="w-2 h-2 rounded-full bg-aero-emerald animate-pulse"></span>
+            <span class="text-white font-medium">REAL-TIME TACTICAL SIMULATION</span>
+          </div>
+
+          <!-- Bottom Legend -->
+          <div class="absolute bottom-3 left-4 text-[10px] font-mono text-aero-muted" id="canvasLegend">
+            AIRBORNE CELLULAR NAVIGATION FEED
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       7. FIELD TRIALS — TESTED FOR & GPS GRADE VALIDATION
+       ================================================================ -->
+  <section id="trials" class="py-20 sm:py-28 relative z-10 border-t border-white/[0.08] bg-aero-slateDark/30">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal-on-scroll">
+        <div class="text-xs font-mono text-aero-emerald uppercase tracking-widest mb-3 font-semibold">Operational Validation</div>
+        <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight">
+          Proven in live flight
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- CARD 1: ROTARY FLIGHT TESTED FOR GPS-GRADE ACCURACY -->
+        <div class="heven-card p-7 rounded-2xl reveal-on-scroll">
+          <div class="text-[10px] font-mono text-aero-emerald uppercase tracking-wider mb-3 font-semibold">Rotary Flight Outage Test</div>
+          <div class="font-display text-2xl text-white font-medium mb-1">GPS Grade</div>
+          <p class="text-slate-400 text-xs font-light">One-hour rotary flight, satellite navigation fully disabled.</p>
+        </div>
+
+        <!-- CARD 2: ALPINE WAYPOINT CORRIDOR ENDURANCE -->
+        <div class="heven-card p-7 rounded-2xl reveal-on-scroll" style="transition-delay: 150ms;">
+          <div class="text-[10px] font-mono text-aero-cyan uppercase tracking-wider mb-3 font-semibold">High-Altitude Alpine Corridor</div>
+          <div class="font-display text-2xl text-white font-medium mb-1">400km @ 4,000m</div>
+          <p class="text-slate-400 text-xs font-light">Continuous waypoint nav across rugged alpine terrain.</p>
+        </div>
+
+        <!-- CARD 3: ZERO-PRIOR RF LOCALIZATION -->
+        <div class="heven-card p-7 rounded-2xl reveal-on-scroll" style="transition-delay: 300ms;">
+          <div class="text-[10px] font-mono text-aero-orange uppercase tracking-wider mb-3 font-semibold">Austere Infrastructure Navigation</div>
+          <div class="font-display text-2xl text-white font-medium mb-1">Unmapped Terrain</div>
+          <p class="text-slate-400 text-xs font-light">Localization validated with zero prior sovereign RF data.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       8. LEADERSHIP TEAM (EXPANDED EXECUTIVE SUITE)
+       ================================================================ -->
+  <section id="leadership" class="py-24 sm:py-32 relative z-10 border-t border-white/[0.08] bg-aero-void">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
+        <div class="text-xs font-mono text-aero-orange uppercase tracking-widest mb-3 font-semibold">Leadership Team</div>
+        <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight mb-4">
+          Decades of Specialized Signals IP &amp; Defense Execution
+        </h2>
+        <p class="text-aero-muted text-sm sm:text-base font-light">
+          Built by pioneers who created cellular positioning architectures deployed by global homeland security agencies, paired with seasoned defense capture and scale operators.
+        </p>
+      </div>
+
+      <!-- ROW 1: 3 Core Founders & Technical Leads -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        
+        <!-- DR. MOSHE LEVIN -->
+        <div class="heven-card p-8 sm:p-9 rounded-3xl flex flex-col justify-between group reveal-on-scroll">
+          <div>
+            <div class="relative w-20 h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-orange/50 transition-all shadow-lg bg-slate-900">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                alt="Dr. Moshe Levin"
+                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+            </div>
+
+            <h3 class="font-display text-xl text-white font-medium">Dr. Moshe Levin</h3>
+            <div class="text-xs font-mono text-aero-orange uppercase tracking-wider mb-4 font-semibold">Chief Scientist</div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
+              35+ years in cellular positioning. Architected systems now deployed by homeland security agencies worldwide. Holds dual PhDs, 8 U.S. patents, and over 20 published papers.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-emerald flex items-center space-x-2">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span>Cellular Positioning Pioneer</span>
+          </div>
+        </div>
+
+        <!-- EITAN DEUTSCHER -->
+        <div class="heven-card p-8 sm:p-9 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 150ms;">
+          <div>
+            <div class="relative w-20 h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-cyan/50 transition-all shadow-lg bg-slate-900">
+              <img 
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" 
+                alt="Eitan Deutscher"
+                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+            </div>
+
+            <h3 class="font-display text-xl text-white font-medium">Eitan Deutscher</h3>
+            <div class="text-xs font-mono text-aero-cyan uppercase tracking-wider mb-4 font-semibold">Head of Core R&amp;D</div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
+              25+ years in high-performance computing. Led R&amp;D for Hexagon's cellular positioning system, authoring full ray-tracing architectures that power revolutionary UAV operations.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-cyan flex items-center space-x-2">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>High-Performance RF Architect</span>
+          </div>
+        </div>
+
+        <!-- ISAAC GURARY - CHIEF EXECUTIVE OFFICER -->
+        <div class="heven-card p-8 sm:p-9 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 300ms;">
+          <div>
+            <div class="relative w-20 h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-white/50 transition-all shadow-lg bg-slate-900">
+              <img 
+                src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" 
+                alt="Isaac Gurary"
+                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+            </div>
+
+            <h3 class="font-display text-xl text-white font-medium">Isaac Gurary</h3>
+            <div class="text-xs font-mono text-white uppercase tracking-wider mb-4 font-semibold">Chief Executive Officer</div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
+              Seasoned entrepreneur with a proven track record scaling deep-tech ventures, including co-founding NoFraud. Renowned for product vision, commercialization, and driving defense prime partnerships.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs font-mono text-white flex items-center space-x-2">
+            <i data-lucide="trending-up" class="w-4 h-4"></i>
+            <span>Venture Scaling &amp; Defense Primes</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROW 2: 2 Executive Scale & Defense Capture Leaders (Centered) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- ZALMY GURARY - CHIEF OPERATING OFFICER -->
+        <div class="heven-card p-8 sm:p-9 rounded-3xl flex flex-col justify-between group reveal-on-scroll">
+          <div>
+            <div class="relative w-20 h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-cyan/50 transition-all shadow-lg bg-slate-900">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" 
+                alt="Zalmy Gurary"
+                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+            </div>
+
+            <h3 class="font-display text-xl text-white font-medium">Zalmy Gurary</h3>
+            <div class="text-xs font-mono text-aero-cyan uppercase tracking-wider mb-4 font-semibold">Chief Operating Officer</div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
+              Extensive operational background driving product-market fit, organizational scale, and tech commercialization. Specializes in aligning engineering velocity with demanding enterprise operational deployments.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-cyan flex items-center space-x-2">
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            <span>Product-Market Fit &amp; Operational Scale</span>
+          </div>
+        </div>
+
+        <!-- IAN SALTS - VP OF GOVERNMENT CAPTURE & PROPOSALS -->
+        <div class="heven-card p-8 sm:p-9 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 150ms;">
+          <div>
+            <div class="relative w-20 h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-orange/50 transition-all shadow-lg bg-slate-900">
+              <img 
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" 
+                alt="Ian Salts"
+                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+            </div>
+
+            <h3 class="font-display text-xl text-white font-medium">Ian Salts</h3>
+            <div class="text-xs font-mono text-aero-orange uppercase tracking-wider mb-4 font-semibold">VP of Government Capture &amp; Proposals</div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
+              35+ years of defense industry and Pentagon acquisition experience. Directs federal capture strategy, DoD/DHS proposal execution, and long-range program capture across major national defense initiatives.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-orange flex items-center space-x-2">
+            <i data-lucide="shield" class="w-4 h-4"></i>
+            <span>35+ Yrs Pentagon &amp; Defense Capture</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       9. REQUEST ACCESS — SINGLE CONSOLIDATED CONVERSION POINT
+       ================================================================ -->
+  <section id="contact" class="py-24 sm:py-32 relative z-10 bg-gradient-to-b from-aero-slateDark/70 via-aero-void to-aero-slateDark/50 border-t border-white/[0.08]">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6 reveal-on-scroll">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-aero-cyan/10 border border-aero-cyan/30 text-aero-cyan font-mono text-xs font-bold uppercase tracking-wider mb-3">
+            <span class="w-2 h-2 rounded-full bg-aero-cyan animate-ping"></span>
+            <span>Defense Verification Gateway</span>
+          </div>
+          <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight">
+            Request Access
+          </h2>
+          <p class="text-aero-muted text-sm sm:text-base font-light mt-3 max-w-xl">
+            Evaluation hardware and Technical Data Packages are furnished under NDA to verified defense agencies, primes, and airframe manufacturers.
+          </p>
+        </div>
+        <div class="flex items-center space-x-3 text-xs font-mono text-slate-300 bg-white/[0.03] border border-white/10 px-5 py-3 rounded-2xl">
+          <i data-lucide="shield-check" class="w-4 h-4 text-aero-emerald"></i>
+          <span>Blue UAS Framework Aligned</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+        <!-- Left: Spec Panel -->
+        <div class="lg:col-span-5 heven-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between tactical-bracket reveal-on-scroll">
+          <div>
+            <div class="text-xs font-mono font-bold tracking-widest text-white uppercase mb-8">Evaluation Pod</div>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-9 h-9 rounded-xl bg-aero-orange/15 border border-aero-orange/30 flex items-center justify-center shrink-0">
+                  <i data-lucide="cpu" class="w-4 h-4 text-aero-orange"></i>
+                </div>
+                <p class="text-xs text-slate-300 font-light leading-relaxed pt-2">Rugged, lightweight payload — quick-release rail mount, ready to fly.</p>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-9 h-9 rounded-xl bg-aero-cyan/15 border border-aero-cyan/30 flex items-center justify-center shrink-0">
+                  <i data-lucide="layers" class="w-4 h-4 text-aero-cyan"></i>
+                </div>
+                <p class="text-xs text-slate-300 font-light leading-relaxed pt-2">Plug-and-play GPS-equivalent feed — Pixhawk, Cube, PX4, ArduPilot.</p>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-9 h-9 rounded-xl bg-aero-emerald/15 border border-aero-emerald/30 flex items-center justify-center shrink-0">
+                  <i data-lucide="crosshair" class="w-4 h-4 text-aero-emerald"></i>
+                </div>
+                <p class="text-xs text-slate-300 font-light leading-relaxed pt-2">Ground station with live ATAK Cursor-on-Target telemetry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div class="text-[10px] font-mono text-aero-muted uppercase">Setup</div>
+              <div class="font-display font-bold text-base text-white mt-1">&lt; 30 min</div>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-aero-muted uppercase">Signal</div>
+              <div class="font-display font-bold text-base text-aero-cyan mt-1">Multi-Band</div>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-aero-muted uppercase">SWaP</div>
+              <div class="font-display font-bold text-base text-aero-emerald mt-1">Negligible</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Single Form -->
+        <div class="lg:col-span-7 heven-card rounded-3xl p-8 sm:p-10 reveal-on-scroll" style="transition-delay: 150ms;">
+          <form onsubmit="event.preventDefault(); alert('Request received. An ATSMUS systems engineer will verify credentials and respond within 24 business hours.');" class="space-y-5 text-left">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Full Name &amp; Title</label>
+                <input type="text" required placeholder="Col. J. Doe / Systems Director" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Agency / Prime / OEM</label>
+                <input type="text" required placeholder="DoD, DHS, Defense Prime, Airframe OEM" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Government / Enterprise Email</label>
+                <input type="email" required placeholder="name@organization.mil" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Requesting</label>
+                <select class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors">
+                  <option>Evaluation Hardware</option>
+                  <option>Technical Data Package (TDP)</option>
+                  <option>Both</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Target Platform &amp; Mission</label>
+              <textarea rows="2" placeholder="Target airframe, autopilot interface, or flight demonstration timeline..." class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors"></textarea>
+            </div>
+
+            <div class="flex items-center space-x-3 text-xs font-mono text-slate-400">
+              <input type="checkbox" required id="complianceCheck" class="rounded bg-aero-void border-white/20 text-aero-orange focus:ring-0 cursor-pointer" />
+              <label for="complianceCheck" class="cursor-pointer">I confirm this request is submitted on behalf of a verified defense, government, or industrial entity.</label>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-full bg-aero-orange text-white font-bold text-xs sm:text-sm font-mono uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer">
+              <span>Submit Request</span>
+              <i data-lucide="lock" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       10. STREAMLINED, SPACIOUS, MINIMALIST FOOTER
+       ================================================================ -->
+  <footer class="border-t border-white/[0.08] bg-aero-void py-10 relative z-10 text-xs font-mono text-slate-400">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <!-- Brand Minimal Wordmark -->
+      <a href="#" class="flex items-center space-x-2 group">
+        <span class="font-display font-semibold text-lg tracking-tight text-white group-hover:text-aero-cyan transition-colors">
+          Atsmus<span class="text-aero-cyan font-bold">.</span>
+        </span>
+      </a>
+
+      <!-- Essential Navigation Links -->
+      <div class="flex items-center space-x-6 text-[11px] uppercase tracking-wider text-slate-400">
+        <a href="#missions" class="hover:text-white transition-colors">Missions</a>
+        <a href="#platform" class="hover:text-white transition-colors">Platforms</a>
+        <a href="#trials" class="hover:text-white transition-colors">Flight Heritage</a>
+        <a href="#leadership" class="hover:text-white transition-colors">Leadership</a>
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+      </div>
+
+      <!-- Contact & Copyright -->
+      <div class="flex items-center space-x-4 text-[11px] text-slate-500">
+        <a href="mailto:info@atsmus.com" class="hover:text-aero-cyan transition-colors">info@atsmus.com</a>
+        <span>&bull;</span>
+        <span>&copy; 2026 Atsmus. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       JAVASCRIPT: SCROLL DYNAMICS, 3D SURROUND HERO & HUD SIMULATION
+       ================================================================ -->
+  <script>
+    lucide.createIcons();
+
+    // -------------------------------------------------------------
+    // SCROLL TELEMETRY & DYNAMIC INTERSECTIONS
+    // -------------------------------------------------------------
+    const scrollBar = document.getElementById('scrollProgress');
+    const siteHeader = document.getElementById('siteHeader');
+    const scrollCue = document.getElementById('heroScrollCue');
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (scrollBar) scrollBar.style.width = scrolled + '%';
+
+      if (winScroll > 40) {
+        siteHeader.classList.add('scrolled');
+        if (scrollCue) scrollCue.style.opacity = '0';
+      } else {
+        siteHeader.classList.remove('scrolled');
+        if (scrollCue) scrollCue.style.opacity = '0.8';
+      }
+    }, { passive: true });
+
+    // Scroll-triggered element reveals
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+    // -------------------------------------------------------------
+    // 1. HERO ROTATING HEADLINES (GPS-FIRST STRATEGIC FOCUS)
+    // -------------------------------------------------------------
+    const rotatingStates = [
+      { text: "GPS-Denied Autonomy.", color: "#00E5FF" },
+      { text: "Zero-Emission Air Defense.", color: "#10B981" },
+      { text: "Tactical Navigation Beyond GPS.", color: "#FF5511" },
+      { text: "Total Airspace Dominance.", color: "#00E5FF" }
+    ];
+
+    let currentRotation = 0;
+    const headlineEl = document.getElementById('rotatingHeadline');
+
+    setInterval(() => {
+      currentRotation = (currentRotation + 1) % rotatingStates.length;
+      headlineEl.style.opacity = '0';
+      headlineEl.style.transform = 'translateY(12px)';
+
+      setTimeout(() => {
+        headlineEl.innerText = rotatingStates[currentRotation].text;
+        headlineEl.style.color = rotatingStates[currentRotation].color;
+        headlineEl.style.opacity = '1';
+        headlineEl.style.transform = 'translateY(0)';
+      }, 200);
+    }, 3600);
+
+    // -------------------------------------------------------------
+    // 2. 3D DEFENSE DRONE & CELL MAST VISUALIZATION (THREE.JS - UNTOUCHED)
+    // -------------------------------------------------------------
+    (function initSurroundTactical3D() {
+      const container = document.getElementById('threeHeroCanvas');
+      if (!container) return;
+
+      const scene = new THREE.Scene();
+      const isMobile = window.innerWidth < 768;
+      const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 1, 1000);
+      camera.position.set(isMobile ? 8 : 0, isMobile ? 18 : 14, isMobile ? 70 : 60);
+      camera.lookAt(isMobile ? 6 : 0, 2, 0);
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.35;
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0x131f33, 2.2);
+      scene.add(ambientLight);
+
+      const cyanKeyLight = new THREE.DirectionalLight(0x00E5FF, 3.4);
+      cyanKeyLight.position.set(-20, 35, 30);
+      scene.add(cyanKeyLight);
+
+      const rimLight = new THREE.DirectionalLight(0x38bdf8, 4.2);
+      rimLight.position.set(45, 25, -15);
+      scene.add(rimLight);
+
+      const amberAccentLight = new THREE.PointLight(0xff6600, 2.4, 70);
+      amberAccentLight.position.set(12, -6, 22);
+      scene.add(amberAccentLight);
+
+      const countX = 52;
+      const countZ = 52;
+      const totalParticles = countX * countZ;
+      const particlePositions = new Float32Array(totalParticles * 3);
+      const particleColors = new Float32Array(totalParticles * 3);
+
+      let pIdx = 0;
+      for (let ix = 0; ix < countX; ix++) {
+        for (let iz = 0; iz < countZ; iz++) {
+          const x = (ix - countX / 2) * 3.6;
+          const z = (iz - countZ / 2) * 3.6;
+          particlePositions[pIdx * 3] = x;
+          particlePositions[pIdx * 3 + 1] = -7.5;
+          particlePositions[pIdx * 3 + 2] = z;
+
+          const dist = Math.sqrt(x * x + z * z);
+          // Softly fade particles on the left where text lives, while keeping the right side vibrant
+          const leftFade = x < 0 ? Math.max(0.06, 0.7 + (x / 30)) : 1.0;
+
+          if (dist < 28) {
+            particleColors[pIdx * 3] = 0.0 * leftFade;
+            particleColors[pIdx * 3 + 1] = 0.88 * leftFade;
+            particleColors[pIdx * 3 + 2] = 1.0 * leftFade;
+          } else if (dist < 46) {
+            particleColors[pIdx * 3] = 0.15 * leftFade;
+            particleColors[pIdx * 3 + 1] = 0.32 * leftFade;
+            particleColors[pIdx * 3 + 2] = 0.58 * leftFade;
+          } else {
+            particleColors[pIdx * 3] = 0.06 * leftFade;
+            particleColors[pIdx * 3 + 1] = 0.12 * leftFade;
+            particleColors[pIdx * 3 + 2] = 0.25 * leftFade;
+          }
+          pIdx++;
+        }
+      }
+
+      const kineticGeo = new THREE.BufferGeometry();
+      kineticGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      kineticGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+      const kineticMat = new THREE.PointsMaterial({
+        size: 1.15,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.4
+      });
+
+      const kineticParticles = new THREE.Points(kineticGeo, kineticMat);
+      scene.add(kineticParticles);
+
+      const towerX = 22;
+      const towerZ = -4;
+      const towerGroup = new THREE.Group();
+      towerGroup.position.set(towerX, -7.5, towerZ);
+
+      const steelMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.9, roughness: 0.25 });
+      const darkSteelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.95, roughness: 0.2 });
+      const radomeMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.4, metalness: 0.1 });
+      const cyanGlowMat = new THREE.MeshBasicMaterial({ color: 0x00E5FF });
+
+      const towerHeight = 24;
+      const baseR = 1.6;
+      const topR = 0.65;
+      const stages = 8;
+
+      const colGeo = new THREE.CylinderGeometry(0.075, 0.1, towerHeight, 12);
+      for (let i = 0; i < 3; i++) {
+        const ang = (i * Math.PI * 2) / 3;
+        const col = new THREE.Mesh(colGeo, steelMat);
+        const avgR = (baseR + topR) / 2;
+        col.position.set(Math.cos(ang) * avgR, towerHeight / 2, Math.sin(ang) * avgR);
+        col.rotation.z = Math.cos(ang) * 0.042;
+        col.rotation.x = -Math.sin(ang) * 0.042;
+        towerGroup.add(col);
+      }
+
+      for (let s = 1; s <= stages; s++) {
+        const y = (s / stages) * towerHeight;
+        const r = baseR - (baseR - topR) * (s / stages);
+        const ringPoints = [];
+        for (let i = 0; i <= 3; i++) {
+          const ang = (i * Math.PI * 2) / 3;
+          ringPoints.push(new THREE.Vector3(Math.cos(ang) * r, y, Math.sin(ang) * r));
+        }
+        const ringMesh = new THREE.Line(new THREE.BufferGeometry().setFromPoints(ringPoints), new THREE.LineBasicMaterial({ color: 0x64748b }));
+        towerGroup.add(ringMesh);
+      }
+
+      const headGroup = new THREE.Group();
+      headGroup.position.y = towerHeight;
+
+      const platformGeo = new THREE.CylinderGeometry(1.8, 1.5, 0.18, 6);
+      headGroup.add(new THREE.Mesh(platformGeo, darkSteelMat));
+
+      const radomeGeo = new THREE.BoxGeometry(0.35, 2.8, 0.2);
+      for (let i = 0; i < 3; i++) {
+        const ang = (i * Math.PI * 2) / 3;
+        const radome = new THREE.Mesh(radomeGeo, radomeMat);
+        radome.position.set(Math.cos(ang) * 1.45, 1.2, Math.sin(ang) * 1.45);
+        radome.rotation.y = -ang + Math.PI / 2;
+        headGroup.add(radome);
+      }
+
+      const beaconLight = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), cyanGlowMat);
+      beaconLight.position.y = 2.8;
+      headGroup.add(beaconLight);
+
+      const beaconHalo = new THREE.PointLight(0x00E5FF, 3.2, 18);
+      beaconHalo.position.y = 2.8;
+      headGroup.add(beaconHalo);
+
+      towerGroup.add(headGroup);
+      scene.add(towerGroup);
+
+      const waveCount = 5;
+      const waveRings = [];
+      for (let i = 0; i < waveCount; i++) {
+        const ringGeo = new THREE.TorusGeometry(1.2, 0.04, 16, 64);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x00E5FF, transparent: true, opacity: 0.5 });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2;
+        ring.position.set(towerX, towerHeight - 7.5 + 1.2, towerZ);
+        scene.add(ring);
+        waveRings.push(ring);
+      }
+
+      const droneRig = new THREE.Group();
+      const carbonBodyMat = new THREE.MeshStandardMaterial({ color: 0x0a101d, roughness: 0.3, metalness: 0.85 });
+      const carbonArmMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.25 });
+      const motorBellMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.95, roughness: 0.15 });
+      const receiverCapMat = new THREE.MeshStandardMaterial({ color: 0x00E5FF, roughness: 0.2, metalness: 0.7 });
+      const bladeMat = new THREE.MeshStandardMaterial({ color: 0x030712, roughness: 0.2, metalness: 0.6 });
+
+      const mainChassis = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.38, 2.4), carbonBodyMat);
+      droneRig.add(mainChassis);
+
+      const noseCanopy = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.7, 0.38, 4), carbonBodyMat);
+      noseCanopy.position.set(0, 0.02, -1.35);
+      noseCanopy.rotation.y = Math.PI / 4;
+      droneRig.add(noseCanopy);
+
+      const atsmusNavUnit = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.18, 0.9), receiverCapMat);
+      atsmusNavUnit.position.set(0, 0.28, -0.1);
+      droneRig.add(atsmusNavUnit);
+
+      const rotorBlades = [];
+      const armSpanX = 2.1;
+      const armSpanZ = 1.9;
+      const armConfigs = [
+        { x: armSpanX, z: -armSpanZ, light: 0x10B981 },
+        { x: -armSpanX, z: -armSpanZ, light: 0xef4444 },
+        { x: armSpanX, z: armSpanZ, light: 0x00E5FF },
+        { x: -armSpanX, z: armSpanZ, light: 0x00E5FF }
+      ];
+
+      armConfigs.forEach(cfg => {
+        const armLength = Math.sqrt(cfg.x * cfg.x + cfg.z * cfg.z);
+        const armAngle = Math.atan2(cfg.z, cfg.x);
+        
+        const armTube = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.09, armLength, 8), carbonArmMat);
+        armTube.rotation.z = Math.PI / 2;
+        armTube.rotation.y = -armAngle;
+        armTube.position.set(cfg.x * 0.5, -0.04, cfg.z * 0.5);
+        droneRig.add(armTube);
+
+        const motorPod = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.36, 16), motorBellMat);
+        motorPod.position.set(cfg.x, 0.08, cfg.z);
+        droneRig.add(motorPod);
+
+        const rotorAssembly = new THREE.Group();
+        rotorAssembly.position.set(cfg.x, 0.28, cfg.z);
+
+        const bladeMesh = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.025, 2.2), bladeMat);
+        rotorAssembly.add(bladeMesh);
+
+        const blurRotorDisc = new THREE.Mesh(
+          new THREE.RingGeometry(0.12, 1.15, 32), 
+          new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.32, side: THREE.DoubleSide })
+        );
+        blurRotorDisc.rotation.x = Math.PI / 2;
+        rotorAssembly.add(blurRotorDisc);
+
+        droneRig.add(rotorAssembly);
+        rotorBlades.push(rotorAssembly);
+      });
+
+      scene.add(droneRig);
+
+      const navBeamMat = new THREE.LineDashedMaterial({ color: 0x00E5FF, dashSize: 0.8, gapSize: 0.4, transparent: true, opacity: 0.85 });
+      const navBeam = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]), navBeamMat);
+      scene.add(navBeam);
+
+      const targetReticle = new THREE.Mesh(new THREE.RingGeometry(2.0, 2.2, 32), new THREE.MeshBasicMaterial({ color: 0x00E5FF, side: THREE.DoubleSide, transparent: true, opacity: 0.45 }));
+      targetReticle.rotation.x = Math.PI / 2;
+      scene.add(targetReticle);
+
+      let mouseX = 0;
+      let mouseY = 0;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.0003;
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.0003;
+      });
+
+      const clock = new THREE.Clock();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const t = clock.getElapsedTime();
+
+        const kPos = kineticGeo.attributes.position.array;
+        let index = 0;
+        for (let ix = 0; ix < countX; ix++) {
+          for (let iz = 0; iz < countZ; iz++) {
+            const x = kPos[index * 3];
+            const z = kPos[index * 3 + 2];
+            kPos[index * 3 + 1] = -7.5 + Math.sin((x + t * 2.8) * 0.09) * 2.2 + Math.cos((z + t * 2.1) * 0.09) * 2.2;
+            index++;
+          }
+        }
+        kineticGeo.attributes.position.needsUpdate = true;
+        kineticParticles.rotation.y = t * 0.012 + mouseX;
+
+        rotorBlades.forEach((rotor, idx) => {
+          rotor.rotation.y += (idx % 2 === 0 ? 0.45 : -0.45);
+        });
+
+        const beaconIntensity = Math.sin(t * 4.2) > 0.25 ? 3.6 : 0.35;
+        beaconHalo.intensity = beaconIntensity;
+        beaconLight.scale.setScalar(beaconIntensity > 1 ? 1.25 : 0.85);
+
+        const orbitSpeed = t * 0.55;
+        const dronePathX = towerX + Math.sin(orbitSpeed) * 16;
+        const dronePathZ = towerZ + Math.cos(orbitSpeed) * 26 + 6;
+        const dronePathY = 6.0 + Math.sin(orbitSpeed * 2) * 2.5 + Math.cos(orbitSpeed) * 1.5;
+
+        const velX = Math.cos(orbitSpeed) * 16;
+        const velZ = -Math.sin(orbitSpeed) * 26;
+
+        droneRig.position.set(dronePathX, dronePathY, dronePathZ);
+        droneRig.rotation.y = Math.atan2(velX, velZ) + Math.PI;
+        droneRig.rotation.z = -velX * 0.035;
+        droneRig.rotation.x = THREE.MathUtils.clamp(velZ * 0.035, -0.25, 0.25);
+
+        targetReticle.position.set(dronePathX, -7.45, dronePathZ);
+        targetReticle.rotation.z = t * 0.8;
+        const distFromCam = Math.max(0.6, (60 - dronePathZ) / 50);
+        targetReticle.scale.setScalar(1 / distFromCam);
+
+        const mastApex = new THREE.Vector3(towerX, towerHeight - 7.5 + 1.2, towerZ);
+        const droneAntenna = new THREE.Vector3(dronePathX, dronePathY + 0.28, dronePathZ);
+        navBeam.geometry.setFromPoints([mastApex, droneAntenna]);
+        navBeam.computeLineDistances();
+
+        waveRings.forEach((ring, idx) => {
+          const waveScale = ((t * 8.0 + idx * 4.8) % 26);
+          ring.scale.set(waveScale, waveScale, 1);
+          ring.material.opacity = Math.max(0, 0.48 - (waveScale / 26));
+        });
+
+        // Parallax depth responds to both cursor and scroll position
+        const scrollOffsetY = window.scrollY * 0.012;
+        camera.position.x += (mouseX * 12 - camera.position.x) * 0.04;
+        camera.position.y += (((isMobile ? 18 : 14) + scrollOffsetY) - mouseY * 8 - camera.position.y) * 0.04;
+        camera.lookAt(isMobile ? 6 : 4, 2, 0);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const mobile = window.innerWidth < 768;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.position.set(mobile ? 8 : 0, mobile ? 18 : 14, mobile ? 70 : 60);
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    })();
+
+    // -------------------------------------------------------------
+    // 3. CAROUSEL AUTO-ADVANCE PLATFORM DATA & JUMP LOGIC
+    // -------------------------------------------------------------
+    const platforms = [
+      {
+        id: "air",
+        badge: "DEFENSE ARCHITECTURE • MOSA COMPLIANT",
+        badgeColor: "text-aero-orange",
+        title: "ATSMUS AIR™",
+        desc: "Plug-and-play tactical positioning payload providing continuous, GPS-grade navigation for autonomous air and ground vehicles using ambient cellular signals when GPS is jammed, spoofed, or denied. Fully compatible with MAVLink, ROS 2, and ATAK ecosystems.",
+        stats: [
+          { label: "RF EMISSION", val: "0.00 W (Silent)", color: "text-white" },
+          { label: "ACCURACY FIX", val: "Tactical GPS-Grade", color: "text-aero-emerald" },
+          { label: "INTEGRATION", val: "Universal Bus", color: "text-aero-cyan" }
+        ],
+        status: "ASSURED PNT FIX • ZERO SATELLITE DEPENDENCE",
+        legend: "TACTICAL CELLULAR PNT (GPS-DENIED THEATER)",
+        accent: "#FF5511"
+      },
+      {
+        id: "pddr",
+        badge: "COVERT AIR DEFENSE • ZERO SPECTRUM PERMITS",
+        badgeColor: "text-aero-cyan",
+        title: "ATSMUS PDDR™",
+        desc: "100% passive bistatic radar sensor that detects, tracks, and classifies incoming rogue drones by monitoring environmental reflections from existing LTE/5G base stations. Emits zero RF energy, making it immune to anti-radiation missiles.",
+        stats: [
+          { label: "RADAR TYPE", val: "Passive Bistatic", color: "text-white" },
+          { label: "RF SIGNATURE", val: "Undetectable", color: "text-aero-orange" },
+          { label: "TARGET ID", val: "Micro-Doppler", color: "text-aero-emerald" }
+        ],
+        status: "PASSIVE C-UAS TRACKING: 0.00W EMISSION",
+        legend: "BISTATIC ECHO + ROTOR BLADE HARMONICS",
+        accent: "#00E5FF"
+      },
+      {
+        id: "sentinel",
+        badge: "PERIMETER EW SHIELD • BASE COUNTER-SURVEILLANCE",
+        badgeColor: "text-aero-emerald",
+        title: "ATSMUS SENTINEL™",
+        desc: "Automated perimeter detection, geolocation, and defeat of hostile rogue cellular base stations (IMSI-catchers / Stingrays) and electronic warfare spoofing devices targeting military installations and tactical command links.",
+        stats: [
+          { label: "INTERCEPT", val: "Hostile IMSI Cells", color: "text-white" },
+          { label: "PERIMETER", val: "Multi-km Shield", color: "text-aero-emerald" },
+          { label: "RESPONSE", val: "Auto Geolocation", color: "text-blue-400" }
+        ],
+        status: "ROGUE TRANSMITTER INTERCEPTOR: SCANNING",
+        legend: "MULTI-BEARING GEOLOCATION & ISOLATION",
+        accent: "#10B981"
+      },
+      {
+        id: "airt",
+        badge: "MISSION PLANNING • 0 TO 500m+ AGL",
+        badgeColor: "text-blue-400",
+        title: "AIRT™ ENGINE",
+        desc: "AI-accelerated 3D electromagnetic propagation digital twin modeling true radio coverage across rugged terrain and high-rise urban canyons from 0 to 500m+ altitudes to plan assured-signal UAV ingress paths before launch.",
+        stats: [
+          { label: "ALTITUDE", val: "0 to 500m+ AGL", color: "text-white" },
+          { label: "TERRAIN", val: "3D DTM & Polygons", color: "text-aero-cyan" },
+          { label: "INGRESS SPEED", val: "AI-Accelerated", color: "text-aero-emerald" }
+        ],
+        status: "3D TERRAIN SPECTRUM TWIN: READY",
+        legend: "AI VOLUMETRIC RAY PROPAGATION MODEL",
+        accent: "#38bdf8"
+      }
+    ];
+
+    let currentIndex = 0;
+    let progressVal = 0;
+    const SLIDE_DURATION = 7000;
+    const UPDATE_INTERVAL = 60;
+
+    function renderSlide(idx) {
+      const p = platforms[idx];
+      document.getElementById('platformBadge').innerText = p.badge;
+      document.getElementById('platformBadge').className = `inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-semibold uppercase tracking-wider ${p.badgeColor}`;
+      document.getElementById('platformTitle').innerText = p.title;
+      document.getElementById('platformDesc').innerText = p.desc;
+      document.getElementById('canvasStatus').innerHTML = `
+        <span class="w-2 h-2 rounded-full mr-1.5 animate-pulse" style="background-color: ${p.accent}"></span>
+        <span class="text-white font-medium">${p.status}</span>
+      `;
+      document.getElementById('canvasLegend').innerText = p.legend;
+
+      document.getElementById('platformStats').innerHTML = p.stats.map(s => `
+        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+          <div class="text-aero-muted text-[10px] uppercase">${s.label}</div>
+          <div class="${s.color} font-bold text-sm mt-1">${s.val}</div>
+        </div>
+      `).join('');
+
+      for (let i = 0; i < platforms.length; i++) {
+        const btn = document.getElementById(`tabBtn${i}`);
+        const bar = document.getElementById(`progress${i}`);
+        if (i === idx) {
+          btn.className = "relative overflow-hidden p-4 rounded-2xl bg-white/[0.06] border border-white/20 text-left transition-all group cursor-pointer";
+          bar.style.backgroundColor = p.accent;
+        } else {
+          btn.className = "relative overflow-hidden p-4 rounded-2xl bg-white/[0.02] border border-white/10 text-left transition-all group cursor-pointer";
+          bar.style.width = "0%";
+        }
+      }
+    }
+
+    function setPlatform(idx) {
+      currentIndex = idx;
+      progressVal = 0;
+      renderSlide(currentIndex);
+    }
+
+    function nextPlatform() {
+      setPlatform((currentIndex + 1) % platforms.length);
+    }
+
+    function prevPlatform() {
+      setPlatform((currentIndex - 1 + platforms.length) % platforms.length);
+    }
+
+    // Smooth navigation directly to specific platform card from Mission blocks
+    function goToPlatform(idx) {
+      setPlatform(idx);
+      const target = document.getElementById('platform');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    setInterval(() => {
+      progressVal += (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
+      const currentBar = document.getElementById(`progress${currentIndex}`);
+      if (currentBar) {
+        currentBar.style.width = `${Math.min(100, progressVal)}%`;
+      }
+
+      if (progressVal >= 100) {
+        progressVal = 0;
+        nextPlatform();
+      }
+    }, UPDATE_INTERVAL);
+
+    renderSlide(0);
+
+    // -------------------------------------------------------------
+    // 4. MOTION SERVICE GRAPHICS (TACTICAL HUD SIMULATIONS)
+    // -------------------------------------------------------------
+    (function initMotionGraphics() {
+      const canvas = document.getElementById('serviceCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let animTime = 0;
+
+      function renderFrame() {
+        const w = canvas.getBoundingClientRect().width;
+        const h = canvas.getBoundingClientRect().height;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // SLIDE 1: ATSMUS AIR™ GPS-DENIED PNT SIMULATION
+        if (currentIndex === 0) {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+          ctx.lineWidth = 1;
+          for (let x = 0; x < w; x += 32) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+          for (let y = 0; y < h; y += 32) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+
+          const cellMasts = [
+            { x: w * 0.16, y: h * 0.26, name: "SOOP_NODE_01" },
+            { x: w * 0.48, y: h * 0.16, name: "SOOP_NODE_02" },
+            { x: w * 0.82, y: h * 0.34, name: "SOOP_NODE_03" },
+            { x: w * 0.30, y: h * 0.82, name: "SOOP_NODE_04" },
+            { x: w * 0.74, y: h * 0.76, name: "SOOP_NODE_05" }
+          ];
+
+          cellMasts.forEach((mast, i) => {
+            ctx.fillStyle = '#64748b';
+            ctx.beginPath(); ctx.arc(mast.x, mast.y, 4, 0, Math.PI * 2); ctx.fill();
+
+            ctx.strokeStyle = 'rgba(255, 85, 17, 0.25)';
+            const pulseR = ((animTime * 24) + (i * 20)) % 65;
+            ctx.beginPath(); ctx.arc(mast.x, mast.y, pulseR, 0, Math.PI * 2); ctx.stroke();
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+            ctx.font = '8px "JetBrains Mono"';
+            ctx.fillText(mast.name, mast.x - 18, mast.y - 10);
+          });
+
+          const curX = w * 0.1 + ((animTime * 28) % (w * 0.8));
+          const curY = (h * 0.52) + Math.sin(curX * 0.018) * (h * 0.2);
+
+          ctx.strokeStyle = 'rgba(255, 85, 17, 0.55)';
+          ctx.setLineDash([4, 3]);
+          ctx.beginPath();
+          ctx.moveTo(w * 0.1, h * 0.52);
+          for (let px = w * 0.1; px <= curX; px += 8) {
+            ctx.lineTo(px, (h * 0.52) + Math.sin(px * 0.018) * (h * 0.2));
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          [cellMasts[0], cellMasts[1], cellMasts[3]].forEach(mast => {
+            ctx.strokeStyle = 'rgba(255, 85, 17, 0.45)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(mast.x, mast.y);
+            ctx.lineTo(curX, curY);
+            ctx.stroke();
+          });
+
+          ctx.save();
+          ctx.translate(curX, curY);
+          ctx.fillStyle = '#FF5511';
+          ctx.beginPath(); ctx.arc(0, 0, 5, 0, Math.PI * 2); ctx.fill();
+
+          ctx.strokeStyle = '#00E5FF';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.arc(0, 0, 14, 0, Math.PI * 2); ctx.stroke();
+
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '9px "JetBrains Mono"';
+          ctx.fillText("GPS-GRADE FIX: SECURE", 18, -4);
+          ctx.fillStyle = '#10B981';
+          ctx.fillText("SYNTHETIC NMEA INJECTED", 18, 8);
+          ctx.restore();
+        }
+
+        // SLIDE 2: ATSMUS PDDR™ PASSIVE BISTATIC RADAR
+        else if (currentIndex === 1) {
+          const cx = w * 0.44;
+          const cy = h * 0.5;
+          const maxR = Math.min(w * 0.38, h * 0.44);
+
+          ctx.strokeStyle = 'rgba(0, 229, 255, 0.12)';
+          ctx.lineWidth = 1;
+          for (let r = maxR * 0.25; r <= maxR; r += maxR * 0.25) {
+            ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+          }
+
+          ctx.beginPath(); ctx.moveTo(cx - maxR, cy); ctx.lineTo(cx + maxR, cy); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(cx, cy - maxR); ctx.lineTo(cx, cy + maxR); ctx.stroke();
+
+          ctx.fillStyle = '#00E5FF';
+          ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.font = '8px "JetBrains Mono"';
+          ctx.fillText("PDDR SENSOR (0.00W)", cx - 36, cy + 16);
+
+          const illX = cx - maxR * 0.75;
+          const illY = cy - maxR * 0.65;
+          ctx.fillStyle = '#64748b';
+          ctx.beginPath(); ctx.arc(illX, illY, 4, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
+          ctx.fillText("TERRESTRIAL CELL MAST", illX - 22, illY - 8);
+
+          const sweepAngle = animTime * 1.8;
+          const sweepX = cx + Math.cos(sweepAngle) * maxR;
+          const sweepY = cy + Math.sin(sweepAngle) * maxR;
+          ctx.strokeStyle = 'rgba(0, 229, 255, 0.5)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(sweepX, sweepY); ctx.stroke();
+
+          const targetDist = maxR * 0.64;
+          const targetAngle = 1.35;
+          const tx = cx + Math.cos(targetAngle) * targetDist;
+          const ty = cy + Math.sin(targetAngle) * targetDist;
+
+          ctx.strokeStyle = 'rgba(0, 229, 255, 0.28)';
+          ctx.setLineDash([2, 2]);
+          ctx.beginPath(); ctx.moveTo(illX, illY); ctx.lineTo(tx, ty); ctx.lineTo(cx, cy); ctx.stroke();
+          ctx.setLineDash([]);
+
+          const angleDiff = Math.abs((sweepAngle % (Math.PI * 2)) - targetAngle);
+          if (angleDiff < 0.35 || angleDiff > (Math.PI * 2 - 0.35)) {
+            ctx.fillStyle = '#00E5FF';
+            ctx.beginPath(); ctx.arc(tx, ty, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = '#FF5511';
+            ctx.strokeRect(tx - 10, ty - 10, 20, 20);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '9px "JetBrains Mono"';
+            ctx.fillText("INTRUDER ROTARY TRACKED", tx + 14, ty - 2);
+          }
+
+          const specX = w * 0.74;
+          const specY = h * 0.22;
+          const specW = w * 0.22;
+          const specH = h * 0.6;
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+          ctx.fillRect(specX, specY, specW, specH);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.strokeRect(specX, specY, specW, specH);
+
+          ctx.fillStyle = '#00E5FF';
+          ctx.font = '8px "JetBrains Mono"';
+          ctx.fillText("ROTOR HARMONICS (CLASSIFIED)", specX + 6, specY + 14);
+
+          ctx.strokeStyle = '#00E5FF';
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          for (let by = 0; by < specH - 24; by += 4) {
+            const bx = specX + specW * 0.5 + Math.sin(by * 0.2 + animTime * 6) * (specW * 0.35) * Math.sin(by * 0.05);
+            if (by === 0) ctx.moveTo(bx, specY + 22 + by);
+            else ctx.lineTo(bx, specY + 22 + by);
+          }
+          ctx.stroke();
+        }
+
+        // SLIDE 3: ATSMUS SENTINEL™ ROGUE CELL & SPOOFER INTERCEPT
+        else if (currentIndex === 2) {
+          ctx.strokeStyle = 'rgba(16, 185, 129, 0.15)';
+          ctx.strokeRect(w * 0.12, h * 0.14, w * 0.76, h * 0.72);
+
+          ctx.fillStyle = 'rgba(16, 185, 129, 0.04)';
+          ctx.fillRect(w * 0.2, h * 0.25, w * 0.45, h * 0.5);
+          ctx.fillStyle = 'rgba(16, 185, 129, 0.7)';
+          ctx.font = '9px "JetBrains Mono"';
+          ctx.fillText("SECURE PERIMETER / AIRBASE ZONE", w * 0.22, h * 0.29);
+
+          const sensors = [
+            { x: w * 0.18, y: h * 0.24 },
+            { x: w * 0.65, y: h * 0.24 },
+            { x: w * 0.18, y: h * 0.75 },
+            { x: w * 0.65, y: h * 0.75 }
+          ];
+
+          sensors.forEach(s => {
+            ctx.fillStyle = '#10B981';
+            ctx.beginPath(); ctx.arc(s.x, s.y, 4, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.3)';
+            ctx.beginPath(); ctx.arc(s.x, s.y, 10, 0, Math.PI * 2); ctx.stroke();
+          });
+
+          const rogueX = w * 0.78;
+          const rogueY = h * 0.48;
+
+          const roguePulse = ((animTime * 18) % 45);
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)';
+          ctx.beginPath(); ctx.arc(rogueX, rogueY, roguePulse, 0, Math.PI * 2); ctx.stroke();
+
+          ctx.fillStyle = '#EF4444';
+          ctx.beginPath(); ctx.arc(rogueX, rogueY, 6, 0, Math.PI * 2); ctx.fill();
+
+          sensors.forEach(s => {
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.6)';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(rogueX, rogueY); ctx.stroke();
+          });
+
+          ctx.strokeStyle = '#EF4444';
+          ctx.strokeRect(rogueX - 12, rogueY - 12, 24, 24);
+
+          ctx.fillStyle = '#EF4444';
+          ctx.font = '10px "JetBrains Mono"';
+          ctx.fillText("ROGUE BASE STATION IDENTIFIED", rogueX - 90, rogueY - 18);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '9px "JetBrains Mono"';
+          ctx.fillText("IMSI-CATCHER GEOLOCATED", rogueX - 85, rogueY + 24);
+        }
+
+        // SLIDE 4: AIRT™ 3D SPECTRUM DIGITAL TWIN
+        else if (currentIndex === 3) {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+          ctx.lineWidth = 1;
+
+          const rows = 14;
+          const cols = 22;
+          const spacingX = w / cols;
+          const spacingY = h / rows;
+
+          for (let r = 2; r < rows - 1; r++) {
+            ctx.beginPath();
+            for (let c = 1; c < cols - 1; c++) {
+              const isoX = c * spacingX + (r * 8);
+              const elevation = Math.sin((c * 0.5) + animTime * 1.5) * 14 + Math.cos((r * 0.4)) * 12;
+              const isoY = (r * spacingY) - elevation + 30;
+
+              if (c === 1) ctx.moveTo(isoX, isoY);
+              else ctx.lineTo(isoX, isoY);
+            }
+            ctx.stroke();
+          }
+
+          const buildings = [
+            { x: w * 0.3, y: h * 0.45, bw: 32, bh: 70 },
+            { x: w * 0.42, y: h * 0.38, bw: 40, bh: 95 },
+            { x: w * 0.56, y: h * 0.5, bw: 30, bh: 60 }
+          ];
+
+          buildings.forEach(b => {
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+            ctx.fillRect(b.x, b.y - b.bh, b.bw, b.bh);
+            ctx.strokeRect(b.x, b.y - b.bh, b.bw, b.bh);
+          });
+
+          const mastX = w * 0.15;
+          const mastY = h * 0.25;
+          ctx.fillStyle = '#38bdf8';
+          ctx.beginPath(); ctx.arc(mastX, mastY, 5, 0, Math.PI * 2); ctx.fill();
+
+          for (let i = 0; i < 12; i++) {
+            const rayAngle = (i * 0.12) - 0.2 + Math.sin(animTime * 0.5) * 0.05;
+            const rayDist = w * 0.65;
+            const rx = mastX + Math.cos(rayAngle) * rayDist;
+            const ry = mastY + Math.sin(rayAngle) * rayDist;
+
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(mastX, mastY); ctx.lineTo(rx, ry); ctx.stroke();
+
+            ctx.fillStyle = '#10B981';
+            ctx.beginPath(); ctx.arc(rx, ry, 2.5, 0, Math.PI * 2); ctx.fill();
+          }
+
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = '10px "JetBrains Mono"';
+          ctx.fillText("AIRT 3D RF PROPAGATION TWIN (0–500m AGL)", w * 0.12, h * 0.88);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.font = '9px "JetBrains Mono"';
+          ctx.fillText("ASSURED UAV INGRESS CORRIDORS IDENTIFIED", w * 0.12, h * 0.94);
+        }
+
+        animTime += 0.03;
+        requestAnimationFrame(renderFrame);
+      }
+      renderFrame();
+    })();
+  </script>
+
+</body>
+</html>
