@@ -793,41 +793,46 @@
 
         <!-- Right: Single Form -->
         <div class="lg:col-span-7 heven-card rounded-3xl p-8 sm:p-10 reveal-on-scroll" style="transition-delay: 150ms;">
-          <form onsubmit="event.preventDefault(); alert('Request received. An ATSMUS systems engineer will verify credentials and respond within 24 business hours.');" class="space-y-5 text-left">
+          <form id="atsmusRequestForm" class="space-y-5 text-left" onsubmit="return submitAtsmusRequest(event)">
+            <input type="hidden" name="_subject" value="New request from atsmus.com contact form" />
+            <input type="hidden" name="_template" value="box" />
+            <input type="hidden" name="_cc" value="zalmy@atsmus.com" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Full Name &amp; Title</label>
-                <input type="text" required placeholder="Col. J. Doe / Systems Director" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+                <input type="text" name="Full Name / Title" required placeholder="Col. J. Doe / Systems Director" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
               </div>
               <div>
                 <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Agency / Prime / OEM</label>
-                <input type="text" required placeholder="DoD, DHS, Defense Prime, Airframe OEM" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+                <input type="text" name="Agency / Prime / OEM" required placeholder="DoD, DHS, Defense Prime, Airframe OEM" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Government / Enterprise Email</label>
-                <input type="email" required placeholder="name@organization.mil" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
+                <input type="email" name="email" required placeholder="name@organization.mil" class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors" />
               </div>
               <div>
                 <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Requesting</label>
-                <select class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors">
-                  <option>Evaluation Hardware</option>
-                  <option>Technical Data Package (TDP)</option>
-                  <option>Both</option>
+                <select name="Requesting" required class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors">
+                  <option>Briefing</option>
+                  <option>Demo</option>
+                  <option>Evaluation</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>
 
             <div>
               <label class="block text-[11px] font-mono text-aero-muted mb-1.5 uppercase">Target Platform &amp; Mission</label>
-              <textarea rows="2" placeholder="Target airframe, autopilot interface, or flight demonstration timeline..." class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors"></textarea>
+              <textarea name="Target Platform &amp; Mission" rows="2" placeholder="Target airframe, autopilot interface, or flight demonstration timeline..." class="w-full px-4 py-3 rounded-xl bg-aero-void border border-white/10 text-white text-sm focus:border-aero-orange focus:outline-none transition-colors"></textarea>
             </div>
 
             <div class="flex items-center space-x-3 text-xs font-mono text-slate-400">
-              <input type="checkbox" required id="complianceCheck" class="rounded bg-aero-void border-white/20 text-aero-orange focus:ring-0 cursor-pointer" />
+              <input type="checkbox" name="Compliance confirmation" value="Confirmed" required id="complianceCheck" class="rounded bg-aero-void border-white/20 text-aero-orange focus:ring-0 cursor-pointer" />
               <label for="complianceCheck" class="cursor-pointer">I confirm this request is submitted on behalf of a verified defense, government, or industrial entity.</label>
             </div>
 
@@ -836,6 +841,30 @@
               <i data-lucide="lock" class="w-4 h-4"></i>
             </button>
           </form>
+          <script>
+            async function submitAtsmusRequest(event) {
+              event.preventDefault();
+              const form = document.getElementById('atsmusRequestForm');
+              const button = form.querySelector('button[type="submit"]');
+              button.disabled = true;
+              const data = {};
+              new FormData(form).forEach((value, key) => { data[key] = value; });
+              try {
+                const response = await fetch('https://formsubmit.co/ajax/isaac@atsmus.com', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                  body: JSON.stringify(data)
+                });
+                if (!response.ok) throw new Error('Submission failed');
+                alert('Request received. An ATSMUS systems engineer will verify credentials and respond within 24 business hours.');
+                form.reset();
+              } catch (error) {
+                alert('Submission could not be sent. Please email info@atsmus.com directly.');
+              }
+              button.disabled = false;
+              return false;
+            }
+          </script>
         </div>
 
       </div>
@@ -2093,4 +2122,4 @@
   </script>
 
 </body>
-</html>
+  </html>
