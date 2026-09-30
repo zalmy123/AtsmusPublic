@@ -387,7 +387,7 @@
               <span class="text-[10px] font-mono text-aero-orange uppercase tracking-wider">01 / DoD Tactical UAS</span>
               <h3 class="font-display text-xl xl:text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-orange transition-colors">Navigate through jamming</h3>
               <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">GNSS-grade autonomy that holds when GNSS signals are spoofed, jammed, or simply absent.</p>
-              <a href="#platform" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-orange font-semibold inline-flex items-center space-x-2 transition-colors">
+              <a href="#platform" onclick="explorePlatform(0)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-orange font-semibold inline-flex items-center space-x-2 transition-colors">
                 <span>Explore Atsmus Air</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
               </a>
@@ -402,7 +402,7 @@
               <span class="text-[10px] font-mono text-aero-cyan uppercase tracking-wider">02 / DHS &amp; Border Security</span>
               <h3 class="font-display text-xl xl:text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-cyan transition-colors">See what emits nothing</h3>
               <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">Passive radar tracks low-altitude drones off ambient signal — zero transmission, zero exposure.</p>
-              <a href="#platform" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-cyan font-semibold inline-flex items-center space-x-2 transition-colors">
+              <a href="#platform" onclick="explorePlatform(1)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-cyan font-semibold inline-flex items-center space-x-2 transition-colors">
                 <span>Explore PDDR</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
               </a>
@@ -417,7 +417,7 @@
               <span class="text-[10px] font-mono text-aero-emerald uppercase tracking-wider">03 / Bases &amp; Infrastructure</span>
               <h3 class="font-display text-xl xl:text-2xl text-white font-medium mt-2 mb-3 group-hover:text-aero-emerald transition-colors">Protect the perimeter</h3>
               <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">Continuous low-altitude coverage around airfields and critical infrastructure — no spectrum license required.</p>
-              <a href="#platform" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-emerald font-semibold inline-flex items-center space-x-2 transition-colors">
+              <a href="#platform" onclick="explorePlatform(2)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-aero-emerald font-semibold inline-flex items-center space-x-2 transition-colors">
                 <span>Explore Sentinel</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
               </a>
@@ -432,7 +432,7 @@
               <span class="text-[10px] font-mono text-blue-400 uppercase tracking-wider">04 / Visual Fallback</span>
               <h3 class="font-display text-xl xl:text-2xl text-white font-medium mt-2 mb-3 group-hover:text-blue-400 transition-colors">Complements vision based navigation</h3>
               <p class="text-slate-300 text-sm font-light leading-relaxed mb-6">Maintains reliable drift-free positioning when optical and visual sensors fail in fog, smoke, dust, darkness, or adverse weather.</p>
-              <a href="#platform" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-blue-400 font-semibold inline-flex items-center space-x-2 transition-colors">
+              <a href="#platform" onclick="explorePlatform(0)" class="text-xs font-mono uppercase tracking-wider text-white group-hover:text-blue-400 font-semibold inline-flex items-center space-x-2 transition-colors">
                 <span>Explore Atsmus Air</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
               </a>
@@ -996,7 +996,7 @@
       </a>
 
       <!-- Essential Navigation Links -->
-      <div class="flex items-center space-x-6 text-[11px] uppercase tracking-wider text-slate-400">
+      <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 sm:flex-nowrap sm:justify-start sm:gap-0 sm:space-x-6 text-[11px] uppercase tracking-wider text-slate-400">
         <a href="#missions" class="hover:text-white transition-colors">Missions</a>
         <a href="#platform" class="hover:text-white transition-colors">Platforms</a>
         <a href="#trials" class="hover:text-white transition-colors">Flight Heritage</a>
@@ -1895,6 +1895,7 @@
 
     let currentIndex = 0;
     let progressVal = 0;
+    let explorePlatformPaused = false;
     const SLIDE_DURATION = 7000;
     const UPDATE_INTERVAL = 60;
 
@@ -1931,9 +1932,15 @@
     }
 
     function setPlatform(idx) {
+      explorePlatformPaused = false;
       currentIndex = idx;
       progressVal = 0;
       renderSlide(currentIndex);
+    }
+
+    function explorePlatform(idx) {
+      setPlatform(idx);
+      explorePlatformPaused = true;
     }
 
     function nextPlatform() {
@@ -1945,6 +1952,7 @@
     }
 
     setInterval(() => {
+      if (explorePlatformPaused) return;
       progressVal += (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
       const currentBar = document.getElementById(`progress${currentIndex}`);
       if (currentBar) {
