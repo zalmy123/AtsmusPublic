@@ -222,35 +222,35 @@
   </header>
 
   <!-- ================================================================
-       2. CINEMATIC HERO (CLEAN, FITS VIEWPORT, DRONE UNTOUCHED)
+       2. CINEMATIC HERO
        ================================================================ -->
   <section class="relative min-h-[100dvh] lg:h-[100dvh] flex items-center pt-20 sm:pt-24 pb-8 sm:pb-10 overflow-hidden hero-glow-radial z-10">
     
-    <!-- 3D HIGH-FIDELITY TACTICAL SURROUND CANVAS (DRONE ON RIGHT - UNTOUCHED) -->
+    <!-- 3D Tactical Surround Canvas -->
     <div id="threeHeroCanvas" class="absolute inset-0 z-0 pointer-events-none"></div>
 
-    <!-- Soft Ambient Left Fade Scrim: Deepened for pristine legibility behind text, smoothly fading before the 3D drone on right -->
+    <!-- Soft Ambient Left Fade Scrim -->
     <div class="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-aero-void via-[#04060A]/95 sm:via-[#04060A]/85 to-transparent pointer-events-none z-10"></div>
     <div class="absolute inset-y-0 left-0 w-full sm:w-[50%] pointer-events-none z-10 opacity-75" style="background: radial-gradient(ellipse 70% 80% at 20% 50%, rgba(4,6,10,0.95) 0%, rgba(4,6,10,0.65) 60%, transparent 100%);"></div>
 
     <div class="max-w-7xl mx-auto px-6 sm:px-10 w-full relative z-20 my-auto">
       
-      <!-- HERO CONTENT CONTAINER (SPACED, CLEAN, FITS ABOVE THE FOLD) -->
+      <!-- HERO CONTENT CONTAINER -->
       <div class="w-full lg:w-[62%] flex flex-col items-start text-left relative z-20 py-2">
         
-        <!-- Main Anchor Headline: Direct, Crisp, High-Impact & Spaced -->
+        <!-- Main Anchor Headline -->
         <h1 class="font-display font-light text-3xl sm:text-5xl lg:text-[50px] xl:text-[56px] tracking-[-0.03em] text-white leading-[1.12] mb-2 sm:mb-3 drop-shadow-md">
           Where there's a signal, there's a way.
         </h1>
 
-        <!-- Animated Rotating Strategic Headline (Clean, Fixed Height, No Page Jumps) -->
+        <!-- Animated Rotating Strategic Headline -->
         <div class="h-[48px] sm:h-[62px] lg:h-[70px] w-full flex items-center overflow-hidden mb-3 sm:mb-5">
           <h2 id="rotatingHeadline" class="font-display font-semibold text-2xl sm:text-4xl lg:text-[42px] xl:text-[48px] tracking-tight text-aero-cyan transition-all duration-400 transform translate-y-0 opacity-100 leading-tight py-0.5 drop-shadow-lg">
             GNSS-Denied Autonomy.
           </h2>
         </div>
 
-        <!-- Strategic Positioning Sub-Headline: Clean, Spacious, Highly Legible -->
+        <!-- Strategic Positioning Sub-Headline -->
         <p class="text-sm sm:text-base lg:text-lg text-slate-300/95 font-light max-w-xl leading-relaxed mb-6 sm:mb-8 tracking-normal drop-shadow-sm">
           Turning ambient cellular signals of opportunity into unjammable navigation and silent airspace sensing for UAVs in contested environments.
         </p>
@@ -267,7 +267,7 @@
 
     </div>
 
-    <!-- Subtle Downward Scroll Indicator (Fades out when scrolled) -->
+    <!-- Downward Scroll Indicator -->
     <a href="#pillars" id="heroScrollCue" class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1.5 text-slate-400 hover:text-aero-cyan transition-all opacity-80 hover:opacity-100">
       <span class="text-[10px] font-mono tracking-widest uppercase">Explore System</span>
       <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce text-aero-cyan"></i>
@@ -275,7 +275,7 @@
   </section>
 
   <!-- ================================================================
-       2.5. 4-PILLAR ARCHITECTURAL RIBBON (CLEANLY POSITIONED BELOW HERO)
+       2.5. 4-PILLAR ARCHITECTURAL RIBBON
        ================================================================ -->
   <section id="pillars" class="relative z-20 max-w-7xl mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-20 sm:pb-24">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
@@ -332,7 +332,7 @@
   </section>
 
   <!-- ================================================================
-       3. MISSION SECTORS — ONE CONTINUOUS REAL DRONE FLIGHT PANORAMA
+       3. MISSION SECTORS
        ================================================================ -->
   <section id="missions" class="py-20 sm:py-28 relative z-10 border-t border-white/[0.08] bg-aero-slateDark/50">
     <div class="max-w-7xl mx-auto px-6 sm:px-10">
@@ -352,13 +352,12 @@
         </p>
       </div>
 
-      <!-- MASTER CONTINUOUS PANORAMIC THEATER (ALL 4 BOXES OVER UNIFIED REAL FLIGHT VIEW) -->
+      <!-- MASTER CONTINUOUS PANORAMIC THEATER -->
       <div id="missionsPanoramaContainer" class="relative rounded-3xl overflow-hidden tactical-bracket border border-white/15 bg-aero-void shadow-2xl reveal-on-scroll">
         
         <!-- 1. FULL-VIBRANCY CONTINUOUS AERIAL VIDEO & 3D TACTICAL DRONE -->
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none" style="background: radial-gradient(ellipse 90% 70% at 50% 30%, #0d1e38 0%, #060c18 60%, #04060A 100%);">
           
-          <!-- Real High-Definition Aerial Flight Video (Full Color, Vivid, Crisp) -->
           <video 
             id="missionSkyVideo"
             class="absolute inset-0 w-full h-full object-cover opacity-95 filter contrast-[1.15] saturate-[1.2] brightness-[1.02] scale-[1.02] transition-opacity duration-700"
@@ -372,17 +371,15 @@
             <source src="https://assets.mixkit.co/videos/preview/mixkit-drone-flying-over-a-foggy-forest-at-sunset-42621-large.mp4" type="video/mp4" />
           </video>
 
-          <!-- 3D WebGL Real Tactical Stealth Drone in Continuous Flight (100% Crystal-Clear Alpha Canvas) -->
           <canvas id="missionContinuousCanvas" class="absolute inset-0 w-full h-full"></canvas>
 
-          <!-- Subtle Edge Vignette (Keeps corners neat while leaving the center video 100% bright & alive) -->
           <div class="absolute inset-0 bg-gradient-to-r from-[#04060A]/40 via-transparent to-[#04060A]/40 pointer-events-none z-10"></div>
         </div>
 
-        <!-- 2. THE 4 BOXES (CRYSTAL-CLEAR GLASS APERTURES OVER THE LIVE FLIGHT) -->
+        <!-- 2. THE 4 MISSION BOXES -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 divide-y lg:divide-y-0 lg:divide-x divide-white/15">
 
-          <!-- CARD 1: DoD Tactical UAS / Navigate through jamming -->
+          <!-- CARD 1: DoD Tactical UAS -->
           <div class="rounded-3xl lg:rounded-none overflow-hidden relative group min-h-[490px] flex flex-col justify-end bg-transparent hover:bg-aero-orange/[0.04] transition-all duration-500">
             <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#04060A]/95 via-[#04060A]/70 to-transparent z-10 pointer-events-none"></div>
 
@@ -397,7 +394,7 @@
             </div>
           </div>
 
-          <!-- CARD 2: DHS & Border Security / See what emits nothing -->
+          <!-- CARD 2: DHS & Border Security -->
           <div class="rounded-3xl lg:rounded-none overflow-hidden relative group min-h-[490px] flex flex-col justify-end bg-transparent hover:bg-aero-cyan/[0.04] transition-all duration-500">
             <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#04060A]/95 via-[#04060A]/70 to-transparent z-10 pointer-events-none"></div>
 
@@ -412,7 +409,7 @@
             </div>
           </div>
 
-          <!-- CARD 3: Bases & Infrastructure / Protect the perimeter -->
+          <!-- CARD 3: Bases & Infrastructure -->
           <div class="rounded-3xl lg:rounded-none overflow-hidden relative group min-h-[490px] flex flex-col justify-end bg-transparent hover:bg-aero-emerald/[0.04] transition-all duration-500">
             <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#04060A]/95 via-[#04060A]/70 to-transparent z-10 pointer-events-none"></div>
 
@@ -427,7 +424,7 @@
             </div>
           </div>
 
-          <!-- CARD 4: Complements vision based navigation -->
+          <!-- CARD 4: Vision Fallback -->
           <div class="rounded-3xl lg:rounded-none overflow-hidden relative group min-h-[490px] flex flex-col justify-end bg-transparent hover:bg-blue-400/[0.04] transition-all duration-500">
             <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#04060A]/95 via-[#04060A]/70 to-transparent z-10 pointer-events-none"></div>
 
@@ -556,7 +553,7 @@
   </section>
 
   <!-- ================================================================
-       7. FIELD TRIALS — TESTED FOR & GNSS GRADE VALIDATION
+       7. FIELD TRIALS
        ================================================================ -->
   <section id="trials" class="py-20 sm:py-28 relative z-10 border-t border-white/[0.08] bg-aero-slateDark/30">
     <div class="max-w-7xl mx-auto px-6 sm:px-10">
@@ -570,21 +567,21 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- CARD 1: ROTARY FLIGHT TESTED FOR GNSS-GRADE ACCURACY -->
+        <!-- CARD 1 -->
         <div class="heven-card p-7 rounded-2xl reveal-on-scroll">
           <div class="text-[10px] font-mono text-aero-emerald uppercase tracking-wider mb-3 font-semibold">Rotary Flight Outage Test</div>
           <div class="font-display text-2xl text-white font-medium mb-1">GNSS Grade</div>
           <p class="text-slate-400 text-xs font-light">One-hour rotary flight, positioning computed independently without GNSS.</p>
         </div>
 
-        <!-- CARD 2: ALPINE WAYPOINT CORRIDOR ENDURANCE -->
+        <!-- CARD 2 -->
         <div class="heven-card p-7 rounded-2xl reveal-on-scroll" style="transition-delay: 150ms;">
           <div class="text-[10px] font-mono text-aero-cyan uppercase tracking-wider mb-3 font-semibold">High-Altitude Alpine Corridor</div>
           <div class="font-display text-2xl text-white font-medium mb-1">400km @ 4,000m</div>
           <p class="text-slate-400 text-xs font-light">Continuous waypoint nav across rugged alpine terrain.</p>
         </div>
 
-        <!-- CARD 3: ANCHORLESS NAVIGATION -->
+        <!-- CARD 3 -->
         <div class="heven-card p-7 rounded-2xl reveal-on-scroll" style="transition-delay: 300ms;">
           <div class="text-[10px] font-mono text-aero-orange uppercase tracking-wider mb-3 font-semibold">Anchorless Navigation</div>
           <div class="font-display text-2xl text-white font-medium mb-1">Infrastructure-Agnostic</div>
@@ -597,157 +594,228 @@
   </section>
 
   <!-- ================================================================
-       8. LEADERSHIP TEAM (CONNECTED TO LOCAL GITHUB IMAGES)
+       8. LEADERSHIP & DEFENSE ADVISORY (REDESIGNED FOR AEROSPACE AUTHORITY)
        ================================================================ -->
   <section id="leadership" class="py-24 sm:py-32 relative z-10 border-t border-white/[0.08] bg-aero-void">
     <div class="max-w-7xl mx-auto px-6 sm:px-10">
       
-      <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll">
-        <div class="text-xs font-mono text-aero-orange uppercase tracking-widest mb-3 font-semibold">Leadership Team</div>
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20 reveal-on-scroll">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-aero-orange font-mono text-xs uppercase tracking-tactical mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-aero-orange animate-pulse"></span>
+          <span>Leadership &amp; Defense Advisory</span>
+        </div>
         <h2 class="font-display font-light text-3xl sm:text-5xl text-white tracking-tight mb-4">
           Decades of Specialized Signals IP
         </h2>
-        <p class="text-aero-muted text-sm sm:text-base font-light">
-          Built by pioneers who created cellular positioning architectures deployed by global homeland security agencies.
+        <p class="text-aero-muted text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+          Built by pioneers who created cellular positioning architectures deployed by global homeland security agencies, guided by veterans of Pentagon weapon systems requirements.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 xl:gap-6">
-        
-        <!-- ISAAC GURARY - CEO -->
-        <div class="heven-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between group reveal-on-scroll">
-          <div>
-            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-orange/50 transition-all shadow-lg bg-slate-900">
-              <img 
-                src="Yitzchak.png" 
-                alt="Isaac Gurary"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
-            </div>
-
-            <h3 class="font-display text-lg sm:text-xl text-white font-medium">Isaac Gurary</h3>
-            <div class="text-xs font-mono text-aero-orange uppercase tracking-wider mb-4 font-semibold">Chief Executive Officer</div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-              Seasoned entrepreneur with proven track record scaling deep-tech ventures, including co-founding NoFraud. Renowned for product vision, operational leadership, and executing enterprise defense integration.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-orange flex items-center space-x-2">
-            <i data-lucide="shield" class="w-4 h-4"></i>
-            <span>Venture Scaling &amp; Defense Strategy</span>
-          </div>
+      <!-- 1. EXECUTIVE OPERATING LEADERSHIP (SYMMETRICAL 2x2 GRID) -->
+      <div class="mb-14">
+        <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
+          <div class="h-px bg-gradient-to-r from-aero-orange/60 to-transparent w-8"></div>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Executive Leadership</span>
         </div>
 
-        <!-- DR. MOSHE LEVIN - CTO -->
-        <div class="heven-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 100ms;">
-          <div>
-            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-orange/50 transition-all shadow-lg bg-slate-900">
-              <img 
-                src="Moshe.png" 
-                alt="Dr. Moshe Levin"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8">
+          
+          <!-- ISAAC GURARY - CEO -->
+          <div class="heven-card p-6 sm:p-8 rounded-3xl tactical-bracket relative overflow-hidden group reveal-on-scroll">
+            <div class="flex flex-col sm:flex-row items-start gap-6">
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/15 group-hover:ring-aero-orange/60 transition-all duration-300 shadow-xl bg-slate-900">
+                <img 
+                  src="Yitzchak.png" 
+                  alt="Isaac Gurary"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-aero-void/70 via-transparent to-transparent"></div>
+                <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-aero-orange shadow-[0_0_8px_#FF5511]"></div>
+              </div>
 
-            <h3 class="font-display text-lg sm:text-xl text-white font-medium">Dr. Moshe Levin</h3>
-            <div class="text-xs font-mono text-aero-orange uppercase tracking-wider mb-4 font-semibold">Chief Technology Officer</div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-              35+ years in cellular positioning. Architected systems now deployed by homeland security agencies worldwide. Holds dual PhDs, 8 U.S. patents, and over 20 published papers.
-            </p>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-display text-xl sm:text-2xl text-white font-medium group-hover:text-aero-orange transition-colors">Isaac Gurary</h3>
+                  <span class="text-[10px] font-mono text-slate-500">EXEC // 01</span>
+                </div>
+                <div class="text-xs font-mono text-aero-orange uppercase tracking-wider font-semibold mb-3">Chief Executive Officer</div>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-5">
+                  Seasoned entrepreneur with proven track record scaling deep-tech ventures, including co-founding NoFraud. Renowned for product vision, operational leadership, and executing enterprise defense integration.
+                </p>
+                <div class="inline-flex items-center space-x-2 text-xs font-mono text-aero-orange bg-aero-orange/10 border border-aero-orange/25 px-3 py-1.5 rounded-xl">
+                  <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                  <span>Venture Scaling &amp; Defense Strategy</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-emerald flex items-center space-x-2">
-            <i data-lucide="award" class="w-4 h-4"></i>
-            <span>Cellular Positioning Pioneer</span>
+
+          <!-- DR. MOSHE LEVIN - CTO -->
+          <div class="heven-card p-6 sm:p-8 rounded-3xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 100ms;">
+            <div class="flex flex-col sm:flex-row items-start gap-6">
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/15 group-hover:ring-aero-emerald/60 transition-all duration-300 shadow-xl bg-slate-900">
+                <img 
+                  src="Moshe.png" 
+                  alt="Dr. Moshe Levin"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-aero-void/70 via-transparent to-transparent"></div>
+                <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-aero-emerald shadow-[0_0_8px_#10B981]"></div>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-display text-xl sm:text-2xl text-white font-medium group-hover:text-aero-emerald transition-colors">Dr. Moshe Levin</h3>
+                  <span class="text-[10px] font-mono text-slate-500">EXEC // 02</span>
+                </div>
+                <div class="text-xs font-mono text-aero-emerald uppercase tracking-wider font-semibold mb-3">Chief Technology Officer</div>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-5">
+                  35+ years in cellular positioning. Architected systems now deployed by homeland security agencies worldwide. Holds dual PhDs, 8 U.S. patents, and over 20 published papers.
+                </p>
+                <div class="inline-flex items-center space-x-2 text-xs font-mono text-aero-emerald bg-aero-emerald/10 border border-aero-emerald/25 px-3 py-1.5 rounded-xl">
+                  <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                  <span>Cellular Positioning Pioneer • 8 Patents</span>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- EITAN DEUTSCHER - VP OF R&D -->
+          <div class="heven-card p-6 sm:p-8 rounded-3xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 200ms;">
+            <div class="flex flex-col sm:flex-row items-start gap-6">
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/15 group-hover:ring-aero-cyan/60 transition-all duration-300 shadow-xl bg-slate-900">
+                <img 
+                  src="Eitan.png" 
+                  alt="Eitan Deutscher"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-aero-void/70 via-transparent to-transparent"></div>
+                <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-aero-cyan shadow-[0_0_8px_#00E5FF]"></div>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-display text-xl sm:text-2xl text-white font-medium group-hover:text-aero-cyan transition-colors">Eitan Deutscher</h3>
+                  <span class="text-[10px] font-mono text-slate-500">EXEC // 03</span>
+                </div>
+                <div class="text-xs font-mono text-aero-cyan uppercase tracking-wider font-semibold mb-3">VP of R&amp;D</div>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-5">
+                  25+ years in high-performance computing. Led R&amp;D for Hexagon's cellular positioning system, authoring full ray-tracing architectures that power revolutionary UAV operations.
+                </p>
+                <div class="inline-flex items-center space-x-2 text-xs font-mono text-aero-cyan bg-aero-cyan/10 border border-aero-cyan/25 px-3 py-1.5 rounded-xl">
+                  <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                  <span>High-Performance RF Architect</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ZALMY GURARY - COO -->
+          <div class="heven-card p-6 sm:p-8 rounded-3xl tactical-bracket relative overflow-hidden group reveal-on-scroll" style="transition-delay: 300ms;">
+            <div class="flex flex-col sm:flex-row items-start gap-6">
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/15 group-hover:ring-blue-400/60 transition-all duration-300 shadow-xl bg-slate-900">
+                <img 
+                  src="Zalmy.png" 
+                  alt="Zalmy Gurary"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-aero-void/70 via-transparent to-transparent"></div>
+                <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_#38bdf8]"></div>
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-display text-xl sm:text-2xl text-white font-medium group-hover:text-blue-400 transition-colors">Zalmy Gurary</h3>
+                  <span class="text-[10px] font-mono text-slate-500">EXEC // 04</span>
+                </div>
+                <div class="text-xs font-mono text-blue-400 uppercase tracking-wider font-semibold mb-3">Chief Operating Officer</div>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-5">
+                  Technology founder and operator experienced in scaling high-growth ventures. Directs corporate operations, platform scaling, and mission delivery across Atsmus.
+                </p>
+                <div class="inline-flex items-center space-x-2 text-xs font-mono text-blue-400 bg-blue-400/10 border border-blue-400/25 px-3 py-1.5 rounded-xl">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                  <span>Venture Execution &amp; Mission Delivery</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. STRATEGIC DEFENSE & NATIONAL SECURITY ADVISORY (DISTINGUISHED SHOWCASE CARD) -->
+      <div class="reveal-on-scroll" style="transition-delay: 350ms;">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-px bg-gradient-to-r from-aero-cyan/60 to-transparent w-8"></div>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Strategic Defense Advisory</span>
         </div>
 
-        <!-- EITAN DEUTSCHER - VP OF R&D -->
-        <div class="heven-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 200ms;">
-          <div>
-            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-cyan/50 transition-all shadow-lg bg-slate-900">
-              <img 
-                src="Eitan.png" 
-                alt="Eitan Deutscher"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+        <div class="heven-card p-6 sm:p-8 lg:p-10 rounded-3xl tactical-bracket relative overflow-hidden group border border-white/15 bg-gradient-to-br from-aero-surface/80 via-aero-slateDark/90 to-aero-void">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            
+            <!-- Left: Profile & Key Credentials -->
+            <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-row items-start sm:items-center lg:items-start gap-5">
+              <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/20 group-hover:ring-aero-orange/60 transition-all duration-300 shadow-2xl bg-slate-900">
+                <img 
+                  src="Ian.png" 
+                  alt="Ian Saltz"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-aero-void/70 via-transparent to-transparent"></div>
+                <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-aero-orange shadow-[0_0_8px_#FF5511]"></div>
+              </div>
+
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-display text-2xl text-white font-medium group-hover:text-aero-orange transition-colors">Ian Saltz</h3>
+                  <span class="text-[10px] font-mono text-slate-500">ADV // 01</span>
+                </div>
+                <div class="text-xs font-mono text-aero-orange uppercase tracking-wider font-semibold mb-1">Senior Advisor</div>
+                <div class="text-[11px] font-mono text-slate-400">Board of Advisors • Defense Strategy</div>
+                
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">OSD Pentagon</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">Special Operations</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">Northrop Grumman</span>
+                </div>
+              </div>
             </div>
 
-            <h3 class="font-display text-lg sm:text-xl text-white font-medium">Eitan Deutscher</h3>
-            <div class="text-xs font-mono text-aero-cyan uppercase tracking-wider mb-4 font-semibold">VP of R&amp;D</div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-              25+ years in high-performance computing. Led R&amp;D for Hexagon's cellular positioning system, authoring full ray-tracing architectures that power revolutionary UAV operations.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-cyan flex items-center space-x-2">
-            <i data-lucide="cpu" class="w-4 h-4"></i>
-            <span>High-Performance RF Architect</span>
-          </div>
-        </div>
+            <!-- Right: Bio narrative & Action CTA -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-5 lg:border-l lg:border-white/10 lg:pl-8">
+              <p class="text-slate-300 text-xs sm:text-sm sm:text-base leading-relaxed font-light">
+                Former Office of the Secretary of Defense (OSD) Pentagon strategist and U.S. Army Special Operations veteran with senior capture leadership at Northrop Grumman. Advises Atsmus on defense policy, Joint Staff weapon systems requirements, and UAS/C-UAS program acquisition.
+              </p>
 
-        <!-- ZALMY GURARY - COO -->
-        <div class="heven-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 300ms;">
-          <div>
-            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-cyan/50 transition-all shadow-lg bg-slate-900">
-              <img 
-                src="Zalmy.png" 
-                alt="Zalmy Gurary"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+              <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+                <div class="flex items-center space-x-2 text-xs font-mono text-aero-emerald">
+                  <i data-lucide="shield-check" class="w-4 h-4"></i>
+                  <span>National Security Procurement &amp; C-UAS Programs</span>
+                </div>
+
+                <button type="button" onclick="openIanBioModal()" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-aero-orange hover:text-white text-white font-mono text-xs uppercase tracking-wider transition-all duration-300 inline-flex items-center space-x-2 cursor-pointer shadow-sm group/btn">
+                  <span>Read Full Defense Bio</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                </button>
+              </div>
             </div>
 
-            <h3 class="font-display text-lg sm:text-xl text-white font-medium">Zalmy Gurary</h3>
-            <div class="text-xs font-mono text-aero-cyan uppercase tracking-wider mb-4 font-semibold">Chief Operating Officer</div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-              Technology founder and operator experienced in scaling high-growth ventures. Directs corporate operations, platform scaling, and mission delivery across Atsmus.
-            </p>
           </div>
-          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-cyan flex items-center space-x-2">
-            <i data-lucide="trending-up" class="w-4 h-4"></i>
-            <span>Venture Execution &amp; Mission Delivery</span>
-          </div>
+
         </div>
-
-        <!-- IAN SALTZ - SENIOR ADVISOR -->
-        <div class="heven-card p-6 sm:p-7 rounded-3xl flex flex-col justify-between group reveal-on-scroll" style="transition-delay: 400ms;">
-          <div>
-            <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-6 ring-1 ring-white/20 group-hover:ring-aero-orange/50 transition-all shadow-lg bg-slate-900">
-              <img 
-                src="Ian.png" 
-                alt="Ian Saltz"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
-            </div>
-
-            <h3 class="font-display text-lg sm:text-xl text-white font-medium">Ian Saltz</h3>
-            <div class="text-xs font-mono text-aero-orange uppercase tracking-wider mb-4 font-semibold">Senior Advisor</div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-4">
-              Former OSD Pentagon strategist and U.S. Army Special Operations veteran with senior leadership at Northrop Grumman. Specializes in defense policy, weapon systems requirements, and UAS/C-UAS initiatives.
-            </p>
-            <button type="button" onclick="openIanBioModal()" class="inline-flex items-center space-x-1.5 text-xs font-mono text-aero-cyan hover:text-white transition-colors mb-6 group/btn cursor-pointer">
-              <span>Read Full Bio</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover/btn:translate-x-1 transition-transform"></i>
-            </button>
-          </div>
-          <div class="pt-4 border-t border-white/10 text-xs font-mono text-aero-orange flex items-center space-x-2">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>Defense Policy &amp; C-UAS Strategy</span>
-          </div>
-        </div>
-
       </div>
 
     </div>
@@ -800,7 +868,7 @@
   </div>
 
   <!-- ================================================================
-       9. REQUEST ACCESS — SINGLE CONSOLIDATED CONVERSION POINT
+       9. REQUEST ACCESS
        ================================================================ -->
   <section id="contact" class="py-24 sm:py-32 relative z-10 bg-gradient-to-b from-aero-slateDark/70 via-aero-void to-aero-slateDark/50 border-t border-white/[0.08]">
     <div class="max-w-7xl mx-auto px-6 sm:px-10">
@@ -867,7 +935,7 @@
           </div>
         </div>
 
-        <!-- Right: Single Form -->
+        <!-- Right: Request Form -->
         <div class="lg:col-span-7 heven-card rounded-3xl p-8 sm:p-10 reveal-on-scroll" style="transition-delay: 150ms;">
           <form id="atsmusRequestForm" class="space-y-5 text-left" onsubmit="return submitAtsmusRequest(event)">
             <input type="hidden" name="_subject" value="New request from atsmus.com contact form" />
@@ -948,12 +1016,12 @@
   </section>
 
   <!-- ================================================================
-       10. STREAMLINED, SPACIOUS, MINIMALIST FOOTER
+       10. STREAMLINED MINIMALIST FOOTER
        ================================================================ -->
   <footer class="border-t border-white/[0.08] bg-aero-void py-10 relative z-10 text-xs font-mono text-slate-400">
     <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
       
-      <!-- Brand Minimal Wordmark -->
+      <!-- Brand Wordmark -->
       <a href="#" class="flex items-center space-x-2 group">
         <span class="font-display font-semibold text-lg tracking-tight text-white group-hover:text-aero-cyan transition-colors">
           Atsmus<span class="text-aero-cyan font-bold">.</span>
@@ -1045,7 +1113,7 @@
     document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
 
     // -------------------------------------------------------------
-    // 1. HERO ROTATING HEADLINES (GNSS-FIRST STRATEGIC FOCUS)
+    // 1. HERO ROTATING HEADLINES
     // -------------------------------------------------------------
     const rotatingStates = [
       { text: "GNSS-Denied Autonomy.", color: "#00E5FF" },
@@ -1409,7 +1477,6 @@
       renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-      // Atmospheric & Key Lighting
       const ambientLight = new THREE.AmbientLight(0x1e293b, 2.2);
       scene.add(ambientLight);
 
@@ -1425,7 +1492,6 @@
       orangeGroundLight.position.set(0, -30, 10);
       scene.add(orangeGroundLight);
 
-      // Terrain Elevation Wireframe
       const terrainGeo = new THREE.PlaneGeometry(160, 100, 36, 24);
       terrainGeo.rotateX(-Math.PI / 2);
       const posArray = terrainGeo.attributes.position.array;
@@ -1447,7 +1513,6 @@
       terrainMesh.position.set(0, 0, -10);
       scene.add(terrainMesh);
 
-      // Ground Cellular Signal Beacons
       const beaconNodes = [
         { x: -18, y: -12.5, z: -6 },
         { x: -4, y: -12.0, z: -14 },
@@ -1471,7 +1536,6 @@
         beaconRings.push(ring);
       });
 
-      // Atmospheric Forward Flight Particles
       const particleCount = 75;
       const speedParticlesGeo = new THREE.BufferGeometry();
       const pPositions = new Float32Array(particleCount * 3);
@@ -1490,7 +1554,6 @@
       const speedParticles = new THREE.Points(speedParticlesGeo, speedParticlesMat);
       scene.add(speedParticles);
 
-      // High-Fidelity Tactical Stealth UAV
       const stealthDrone = new THREE.Group();
 
       const carbonRAM = new THREE.MeshStandardMaterial({
