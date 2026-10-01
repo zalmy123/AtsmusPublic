@@ -77,6 +77,22 @@
       letter-spacing: -0.03em;
     }
 
+    .hero-desktop-break { display: none; }
+    @media (min-width: 1024px) {
+      .hero-desktop-break { display: block; }
+      .hero-anchor-headline {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: #fff;
+        margin: 0 0 0.75rem;
+      }
+    }
+    @media (min-width: 1280px) {
+      .hero-anchor-headline { font-size: 56px; }
+    }
+
     .glass-nav {
       background: rgba(4, 6, 10, 0.88);
       backdrop-filter: blur(28px);
@@ -239,8 +255,8 @@
       <div class="w-full lg:w-[62%] flex flex-col items-start text-left relative z-20 py-2">
         
         <!-- Main Anchor Headline -->
-        <h1 class="font-display font-light text-3xl sm:text-5xl lg:text-[50px] xl:text-[56px] tracking-[-0.03em] text-white leading-[1.12] mb-2 sm:mb-3 drop-shadow-md">
-          Where there's a signal, there's a way.
+        <h1 class="hero-anchor-headline font-display font-light text-3xl sm:text-5xl lg:text-[50px] xl:text-[56px] tracking-[-0.03em] text-white leading-[1.12] mb-2 sm:mb-3 drop-shadow-md">
+          Where there's a signal,<br class="hero-desktop-break"> there's a way.
         </h1>
 
         <!-- Animated Rotating Strategic Headline -->
@@ -1900,7 +1916,6 @@
 
     let currentIndex = 0;
     let progressVal = 0;
-    let explorePlatformPaused = false;
     const SLIDE_DURATION = 7000;
     const UPDATE_INTERVAL = 60;
 
@@ -1937,7 +1952,6 @@
     }
 
     function setPlatform(idx) {
-      explorePlatformPaused = false;
       currentIndex = idx;
       progressVal = 0;
       renderSlide(currentIndex);
@@ -1945,7 +1959,6 @@
 
     function explorePlatform(idx) {
       setPlatform(idx);
-      explorePlatformPaused = true;
     }
 
     function nextPlatform() {
@@ -1957,7 +1970,6 @@
     }
 
     setInterval(() => {
-      if (explorePlatformPaused) return;
       progressVal += (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
       const currentBar = document.getElementById(`progress${currentIndex}`);
       if (currentBar) {
