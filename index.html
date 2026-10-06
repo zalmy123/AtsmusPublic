@@ -853,7 +853,7 @@
 
       <div class="flex items-center space-x-4 mb-6">
         <div class="relative w-16 h-16 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/20 bg-slate-900">
-          <img src="Ian.png" alt="Ian Saltz" class="w-full h-full object-cover grayscale contrast-125" />
+          <img src="Ian.png" alt="Ian Saltz" class="w-full h-full object-cover grayscale contrast-125" loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
         </div>
         <div>
@@ -1077,6 +1077,13 @@
        ================================================================ -->
   <script>
     lucide.createIcons();
+
+    function animationNearViewport(element) {
+      const rect = element.getBoundingClientRect();
+      const margin = window.innerHeight * 2;
+      return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
+    }
+
 
     // -------------------------------------------------------------
     // IAN SALTZ FULL BIO MODAL CONTROLS
@@ -1404,6 +1411,7 @@
 
       function animate() {
         requestAnimationFrame(animate);
+        if (!animationNearViewport(container)) return;
         const t = clock.getElapsedTime();
 
         const kPos = kineticGeo.attributes.position.array;
@@ -1788,6 +1796,7 @@
 
       function animateMissionFlight() {
         requestAnimationFrame(animateMissionFlight);
+        if (!animationNearViewport(container)) return;
         const t = flightClock.getElapsedTime();
 
         const cycle = (t * 0.38) % (Math.PI * 2);
@@ -2052,6 +2061,10 @@
       let animTime = 0;
 
       function renderFrame() {
+        if (!animationNearViewport(canvas)) {
+          requestAnimationFrame(renderFrame);
+          return;
+        }
         const w = canvas.getBoundingClientRect().width;
         const h = canvas.getBoundingClientRect().height;
 
