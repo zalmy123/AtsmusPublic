@@ -52,6 +52,8 @@
     @media (max-width: 639px) { #carouselWrapper { padding-top: 72px; } }
     #carouselRotationToggle:hover { background: #0D1322; }
     #carouselRotationToggle:focus-visible { outline: 2px solid #00E5FF; outline-offset: 3px; }
+    #carouselRotationToggle .carousel-progress-ring { position: absolute; inset: -2px; width: 42px; height: 42px; transform: rotate(-90deg); pointer-events: none; }
+    #carouselRotationToggle .carousel-progress-ring circle { fill: none; stroke: #00E5FF; stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 100; }
     #carouselRotationToggle .carousel-play-icon { display: none; }
     #carouselRotationToggle[data-paused="true"] .carousel-pause-icon { display: none; }
     #carouselRotationToggle[data-paused="true"] .carousel-play-icon { display: block; }
@@ -511,7 +513,8 @@
       <!-- MAIN PLATFORM CARD -->
       <div id="carouselWrapper" class="heven-card relative p-8 sm:p-12 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[560px] reveal-on-scroll">
         <button id="carouselRotationToggle" type="button" onclick="toggleCarouselRotation()" data-paused="false" aria-label="Stop automatic slide show" title="Stop automatic slide show">
-          <svg class="carousel-pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+          <svg class="carousel-progress-ring" viewBox="0 0 42 42" aria-hidden="true"><circle id="carouselProgressRing" cx="21" cy="21" r="20" pathLength="100" /></svg>
+      <svg class="carousel-pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
           <svg class="carousel-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l14-8z"/></svg>
         </button>
         
@@ -1948,6 +1951,17 @@
     let progressVal = 0;
     const SLIDE_DURATION = 7000;
     const UPDATE_INTERVAL = 60;
+    let progressUpdatedAt = performance.now();
+    let carouselAdvancePending = false;
+    function updateCarouselProgress(now = performance.now()) {
+      if (!carouselPaused) progressVal += ((now - progressUpdatedAt) / SLIDE_DURATION) * 100;
+      progressUpdatedAt = now;
+      const percent = Math.min(100, progressVal);
+      const currentBar = document.getElementById(`progress${currentIndex}`);
+      if (currentBar) currentBar.style.width = `${percent}%`;
+      const ring = document.getElementById('carouselProgressRing');
+      if (ring) ring.style.strokeDashoffset = String(100 - percent);
+    }
 
     function renderSlide(idx) {
       const p = platforms[idx];
@@ -1982,6 +1996,7 @@
     }
 
     function toggleCarouselRotation() {
+      updateCarouselProgress();
       carouselPaused = !carouselPaused;
       const button = document.getElementById('carouselRotationToggle');
       const label = carouselPaused ? 'Start automatic slide show' : 'Stop automatic slide show';
@@ -1993,6 +2008,9 @@
     function setPlatform(idx) {
       currentIndex = idx;
       progressVal = 0;
+      progressUpdatedAt = performance.now();
+      const ring = document.getElementById('carouselProgressRing');
+      if (ring) ring.style.strokeDashoffset = '100';
       renderSlide(currentIndex);
     }
 
@@ -2009,16 +2027,17 @@
     }
 
     setInterval(() => {
-      if (carouselPaused) return;
-      progressVal += (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
-      const currentBar = document.getElementById(`progress${currentIndex}`);
-      if (currentBar) {
-        currentBar.style.width = `${Math.min(100, progressVal)}%`;
-      }
-
+      if (carouselAdvancePending) return;
+      if (carouselPaused) { progressUpdatedAt = performance.now(); return; }
+      updateCarouselProgress();
       if (progressVal >= 100) {
-        progressVal = 0;
-        nextPlatform();
+        carouselAdvancePending = true;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            carouselAdvancePending = false;
+            if (!carouselPaused) nextPlatform();
+          });
+        });
       }
     }, UPDATE_INTERVAL);
 
