@@ -7,6 +7,8 @@
   <meta name="description" content="Field-proven cellular airspace solutions for Defense, Homeland Security, and Autonomous Tactical UAS. Unjammable GNSS-grade navigation beyond GNSS, zero-emission passive drone radar, and rogue cell counter-surveillance." />
   <meta property="og:title" content="ATSMUS AeroTech | Assured GNSS-Denied Navigation &amp; Cellular Airspace Defense" />
   <meta property="og:description" content="Field-proven cellular airspace solutions for Defense, Homeland Security, and Autonomous Tactical UAS. Unjammable GNSS-grade navigation beyond GNSS, zero-emission passive drone radar, and rogue cell counter-surveillance." />
+  <link rel="canonical" href="https://atsmus.com/" />
+  <meta property="og:url" content="https://atsmus.com/" />
   <meta property="og:image" content="https://atsmus.com/atsmus-share-logo.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -17,10 +19,25 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ATSMUS",
-    "url": "https://atsmus.com/",
-    "logo": "https://atsmus.com/favicon-192.png"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://atsmus.com/#organization",
+        "name": "ATSMUS",
+        "alternateName": "ATSMUS AeroTech",
+        "url": "https://atsmus.com/",
+        "logo": "https://atsmus.com/favicon-192.png",
+        "email": "info@atsmus.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://atsmus.com/#website",
+        "name": "ATSMUS",
+        "alternateName": "ATSMUS AeroTech",
+        "url": "https://atsmus.com/",
+        "publisher": { "@id": "https://atsmus.com/#organization" }
+      }
+    ]
   }
   </script>
 
@@ -220,11 +237,11 @@
 
       <!-- Direct Header Links -->
       <nav class="hidden lg:flex items-center space-x-8 text-xs font-mono uppercase tracking-tactical text-slate-300">
-        <a href="#missions" class="hover:text-aero-cyan transition-colors">Missions</a>
-        <a href="#platform" class="hover:text-aero-cyan transition-colors">Platforms</a>
-        <a href="#trials" class="hover:text-white transition-colors">Flight Heritage</a>
-        <a href="#leadership" class="hover:text-white transition-colors">Leadership</a>
-        <a href="#contact" class="text-aero-cyan hover:text-white transition-colors flex items-center gap-1.5">
+        <a href="/missions/" data-section="missions" class="hover:text-aero-cyan transition-colors">Missions</a>
+        <a href="/platforms/" data-section="platform" class="hover:text-aero-cyan transition-colors">Platforms</a>
+        <a href="/flight-heritage/" data-section="trials" class="hover:text-white transition-colors">Flight Heritage</a>
+        <a href="/leadership/" data-section="leadership" class="hover:text-white transition-colors">Leadership</a>
+        <a href="/contact/" data-section="contact" class="text-aero-cyan hover:text-white transition-colors flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 rounded-full bg-aero-cyan animate-pulse"></span>
           <span>Request Access</span>
         </a>
@@ -1027,11 +1044,11 @@
 
       <!-- Essential Navigation Links -->
       <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 sm:flex-nowrap sm:justify-start sm:gap-0 sm:space-x-6 text-[11px] uppercase tracking-wider text-slate-400">
-        <a href="#missions" class="hover:text-white transition-colors">Missions</a>
-        <a href="#platform" class="hover:text-white transition-colors">Platforms</a>
-        <a href="#trials" class="hover:text-white transition-colors">Flight Heritage</a>
-        <a href="#leadership" class="hover:text-white transition-colors">Leadership</a>
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="/missions/" data-section="missions" class="hover:text-white transition-colors">Missions</a>
+        <a href="/platforms/" data-section="platform" class="hover:text-white transition-colors">Platforms</a>
+        <a href="/flight-heritage/" data-section="trials" class="hover:text-white transition-colors">Flight Heritage</a>
+        <a href="/leadership/" data-section="leadership" class="hover:text-white transition-colors">Leadership</a>
+        <a href="/contact/" data-section="contact" class="hover:text-white transition-colors">Contact</a>
       </div>
 
       <!-- Contact & Copyright -->
@@ -2356,5 +2373,16 @@
     })();
   </script>
 
+  <script>
+    // Menu links point to real section pages (for Google sitelinks); on this page they keep scrolling as before.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-section]');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var id = a.getAttribute('data-section'), el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      if (location.hash === '#' + id) el.scrollIntoView(); else location.hash = id;
+    });
+  </script>
 </body>
 </html>
