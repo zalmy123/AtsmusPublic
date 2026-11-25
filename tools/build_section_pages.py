@@ -44,7 +44,7 @@ PAGES = {
         "Leadership",
         "Leadership & Board of Advisors | ATSMUS AeroTech",
         "The ATSMUS team behind cellular positioning and passive radar, and its Board of Advisors: "
-        "MG (Ret.) William Grimsley and former OSD Pentagon strategist Ian Saltz.",
+        "former OSD Pentagon strategist Ian Saltz.",
     ),
     "contact": (
         "contact",
@@ -58,7 +58,6 @@ PAGES = {
 # Extra blocks that belong with a section (e.g. the bio modal opened from Leadership).
 EXTRA_BLOCKS = {
     "leadership": [
-        r'  <!-- =+\s*GRIMSLEY FULL BIO MODAL.*?(?=\n  <!-- =+)',
         r'  <!-- =+\s*IAN SALTZ FULL BIO MODAL.*?(?=\n  <!-- =+)',
     ],
 }

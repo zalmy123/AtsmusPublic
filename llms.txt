@@ -21,5 +21,5 @@ ATSMUS builds assured positioning, navigation and timing (assured PNT) and airsp
 
 ## Company
 
-- [Leadership and Board of Advisors](https://atsmus.com/leadership/): Isaac Gurary (CEO), Dr. Moshe Levin (CTO), Eitan Deutscher (VP of R&D), Zalmy Gurary (COO). Board of Advisors: MG (Ret.) William Grimsley, former Chief of Staff of U.S. Strategic Command; Ian Saltz, former OSD Pentagon strategist and Northrop Grumman capture executive.
+- [Leadership and Board of Advisors](https://atsmus.com/leadership/): Isaac Gurary (CEO), Dr. Moshe Levin (CTO), Eitan Deutscher (VP of R&D), Zalmy Gurary (COO). Board of Advisors: Ian Saltz, former OSD Pentagon strategist and Northrop Grumman capture executive.
 - [Request an evaluation kit](https://atsmus.com/contact/): Evaluation hardware and Technical Data Packages are provided under NDA to verified defense agencies, primes and airframe manufacturers. Contact: info@atsmus.com.
