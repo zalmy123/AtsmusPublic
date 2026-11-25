@@ -52,7 +52,10 @@ PAGES = {
 
 # Extra blocks that belong with a section (e.g. the bio modal opened from Leadership).
 EXTRA_BLOCKS = {
-    "leadership": [r'  <!-- =+\s*IAN SALTZ FULL BIO MODAL.*?(?=\n  <!-- =+)'],
+    "leadership": [
+        r'  <!-- =+\s*GRIMSLEY FULL BIO MODAL.*?(?=\n  <!-- =+)',
+        r'  <!-- =+\s*IAN SALTZ FULL BIO MODAL.*?(?=\n  <!-- =+)',
+    ],
 }
 
 # Script blocks of the homepage and the element each one needs. A block whose
