@@ -44,7 +44,7 @@ PAGES = {
         "Leadership",
         "Leadership & Board of Advisors | ATSMUS AeroTech",
         "The ATSMUS team behind cellular positioning and passive radar, and its Board of Advisors: "
-        "Maj. Gen. (Ret.) William Grimsley and former OSD Pentagon strategist Ian Saltz.",
+        "MG (Ret.) William Grimsley and former OSD Pentagon strategist Ian Saltz.",
     ),
     "contact": (
         "contact",
