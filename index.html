@@ -793,10 +793,64 @@
 
       </div>
 
-      <!-- 2. STRATEGIC DEFENSE ADVISORY (INTEGRATED COMPACT MARQUEE) -->
-      <div class="heven-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-aero-orange/40 transition-all duration-300 group/ian reveal-on-scroll" style="transition-delay: 60ms;">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-          
+      <!-- 2. STRATEGIC DEFENSE ADVISORY (BOARD OF ADVISORS: SIDE BY SIDE ON COMPUTERS, STACKED ON PHONES) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+      <!-- MAJOR GENERAL WILLIAM GRIMSLEY - BOARD OF ADVISORS -->
+      <div class="lg:col-span-6 heven-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-aero-orange/40 transition-all duration-300 group/ian reveal-on-scroll" style="transition-delay: 60ms;">
+        <div class="flex flex-col justify-between gap-5 h-full">
+          <div class="space-y-4">
+
+          <!-- Identity & Credentials -->
+          <div class="flex items-center space-x-4 shrink-0">
+            <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/15 bg-slate-900">
+              <img 
+                src="Grimsley.jpg" 
+                alt="Major General William Grimsley" 
+                class="w-full h-full object-cover object-top grayscale group-hover/ian:grayscale-0 transition-all duration-300"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h3 class="font-display text-lg text-white font-medium">Maj. Gen. William Grimsley</h3>
+                <span class="text-[9px] font-mono uppercase bg-aero-orange/10 border border-aero-orange/30 text-aero-orange px-2 py-0.5 rounded-full">Board of Advisors</span>
+              </div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">Major General (Ret.), U.S. Army • Strategic &amp; Operational Planning</div>
+              
+              <div class="flex flex-wrap gap-1.5 mt-2">
+                <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">US Strategic Command</span>
+                <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">Joint Staff</span>
+                <span class="px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300">Office of the SecDef</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Narrative Bio -->
+          <div class="border-t border-white/10 pt-4">
+            <p class="text-slate-400 text-xs sm:text-[13px] leading-relaxed font-light">
+              33-year U.S. Army infantry officer with command at every level from platoon to corps and multiple combat tours in Iraq. Served as Military Assistant to the Secretary of Defense and as Chief of Staff of U.S. Strategic Command.
+            </p>
+          </div>
+
+          </div>
+
+          <!-- Bio Modal Button -->
+          <div class="shrink-0 flex items-center lg:justify-end">
+            <button type="button" onclick="openGrimsleyBioModal()" class="px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-aero-orange hover:text-white text-white font-mono text-xs uppercase tracking-wider border border-white/15 hover:border-aero-orange transition-all duration-300 flex items-center space-x-2 cursor-pointer group">
+              <span>Defense Dossier</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- IAN SALTZ - BOARD OF ADVISORS -->
+      <div class="lg:col-span-6 heven-card p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-aero-orange/40 transition-all duration-300 group/ian reveal-on-scroll" style="transition-delay: 60ms;">
+        <div class="flex flex-col justify-between gap-5 h-full">
+          <div class="space-y-4">
+
           <!-- Identity & Credentials -->
           <div class="flex items-center space-x-4 shrink-0">
             <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/15 bg-slate-900">
@@ -823,10 +877,12 @@
           </div>
 
           <!-- Narrative Bio -->
-          <div class="lg:border-l lg:border-white/10 lg:pl-6 max-w-2xl">
+          <div class="border-t border-white/10 pt-4">
             <p class="text-slate-400 text-xs sm:text-[13px] leading-relaxed font-light">
               Former Office of the Secretary of Defense (OSD) Pentagon strategist and capture executive at Northrop Grumman. Coordinated Joint Staff weapons system requirements and guides Atsmus on DoD UAS/C-UAS program acquisition.
             </p>
+          </div>
+
           </div>
 
           <!-- Bio Modal Button -->
@@ -840,8 +896,59 @@
         </div>
       </div>
 
+      </div>
+
     </div>
   </section>
+
+  <!-- ================================================================
+       GRIMSLEY FULL BIO MODAL
+       ================================================================ -->
+  <div id="grimsleyBioModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md transition-all duration-300" onclick="if(event.target === this) closeGrimsleyBioModal()">
+    <div class="heven-card border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative tactical-bracket overflow-hidden shadow-2xl text-left" style="max-height: 90vh; overflow-y: auto;">
+      <!-- Close Button -->
+      <button type="button" onclick="closeGrimsleyBioModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors p-2 cursor-pointer z-30" aria-label="Close modal">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center space-x-4 mb-6">
+        <div class="relative w-16 h-16 rounded-2xl overflow-hidden shrink-0 ring-1 ring-white/20 bg-slate-900">
+          <img src="Grimsley.jpg" alt="Major General William Grimsley" class="w-full h-full object-cover grayscale contrast-125" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-aero-void/60 via-transparent to-transparent"></div>
+        </div>
+        <div>
+          <h3 class="font-display text-2xl text-white font-medium">Major General William Grimsley</h3>
+          <div class="text-xs font-mono text-aero-orange uppercase tracking-wider font-semibold">Major General (Ret.), U.S. Army</div>
+          <div class="text-[11px] font-mono text-slate-400 mt-0.5">Board of Advisors • Leadership &amp; Strategic Planning</div>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/10 pt-5">
+        <p>
+          Will Grimsley graduated from Davidson College in North Carolina in May 1980 with a Bachelor of Arts in History and was commissioned into the U.S. Army as an Infantry officer.
+        </p>
+        <p>
+          Over the next 33 years, he served in assignments across the United States, Germany, Korea, Kuwait, and multiple combat tours in Iraq, along with operational deployments worldwide. Grimsley held command and leadership positions at every level, from platoon to corps, and served on staffs ranging from small units to the Joint Staff. He also served as Military Assistant to the Secretary of Defense, with his final tour as Chief of Staff of the United States Strategic Command. Among his numerous awards and decorations, Grimsley received the Distinguished Service Medal, the Silver Star, the Defense Superior Service Medal, the Legion of Merit, multiple Bronze Stars, and the Purple Heart for wounds sustained in combat. He also earned the Combat Infantryman Badge and the Combat Action Badge.
+        </p>
+        <p>
+          Grimsley completed all levels of officer education and training. The Army provided him the opportunity to earn two master’s degrees: one in Advanced Military Arts and Sciences and another in National Security Strategy. He also completed executive education at the University of North Carolina Business School. Utilizing his GI Bill benefits through the Veterans Administration, he earned a Doctor of Education degree from Creighton University, concentrating on organizational leadership.
+        </p>
+        <p>
+          Retiring from active duty in 2013 as a Major General, Grimsley consulted in the private sector for several major multinational corporations, focusing on training, leadership development, corporate strategy, and operational planning. He was a senior mentor in joint military and national security exercises and experiments. He also served as the President and CEO of the Sigma Alpha Epsilon Foundation, a nonprofit organization providing scholarships and leadership development opportunities for young fraternity members. Most recently, Grimsley served as South Carolina’s first Secretary of Veterans Affairs, a governor-appointed and state senate-confirmed cabinet officer. He has since returned to the private sector, consulting in leadership development, executive coaching, strategic and operational planning, and organizational design. An Eagle Scout, he serves on the Executive Board of the Coastal Carolina Council of the Boy Scouts of America and was honored with the Distinguished Eagle Scout Award in August 2018. Additionally, he is a certified South Carolina Lowcountry Master Naturalist and a recipient of the Order of the Palmetto, South Carolina’s highest award for service.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+        <div class="text-[11px] font-mono text-aero-emerald flex items-center space-x-1.5">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>Verified Defense Credentials</span>
+        </div>
+        <button type="button" onclick="closeGrimsleyBioModal()" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ================================================================
        IAN SALTZ FULL BIO MODAL
@@ -1129,9 +1236,27 @@
       }
     }
 
+    function openGrimsleyBioModal() {
+      const modal = document.getElementById('grimsleyBioModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeGrimsleyBioModal() {
+      const modal = document.getElementById('grimsleyBioModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeIanBioModal();
+        closeGrimsleyBioModal();
       }
     });
 
