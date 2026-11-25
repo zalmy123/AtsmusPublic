@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>ATSMUS AeroTech | Assured GNSS-Denied Navigation & Cellular Airspace Defense</title>
-  <meta name="description" content="Field-proven cellular airspace solutions for Defense, Homeland Security, and Autonomous Tactical UAS. Unjammable GNSS-grade navigation beyond GNSS, zero-emission passive drone radar, and rogue cell counter-surveillance." />
+  <meta name="description" content="GPS-denied drone navigation and passive counter-UAS drone detection from ambient cellular signals: unjammable GNSS-grade PNT and zero-emission C-UAS radar." />
   <meta property="og:title" content="ATSMUS AeroTech | Assured GNSS-Denied Navigation &amp; Cellular Airspace Defense" />
   <meta property="og:description" content="Field-proven cellular airspace solutions for Defense, Homeland Security, and Autonomous Tactical UAS. Unjammable GNSS-grade navigation beyond GNSS, zero-emission passive drone radar, and rogue cell counter-surveillance." />
   <link rel="canonical" href="https://atsmus.com/" />
@@ -24,10 +24,181 @@
         "@type": "Organization",
         "@id": "https://atsmus.com/#organization",
         "name": "ATSMUS",
-        "alternateName": "ATSMUS AeroTech",
+        "alternateName": [
+          "ATSMUS AeroTech",
+          "Atsmus"
+        ],
         "url": "https://atsmus.com/",
         "logo": "https://atsmus.com/favicon-192.png",
-        "email": "info@atsmus.com"
+        "image": "https://atsmus.com/atsmus-share-logo.png",
+        "email": "info@atsmus.com",
+        "slogan": "Where there's a signal, there's a way.",
+        "description": "ATSMUS AeroTech turns ambient cellular signals of opportunity into unjammable GPS-denied navigation for drones and autonomous vehicles, and into silent, zero-emission passive radar for counter-UAS drone detection.",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "CAGE Code",
+          "value": "25JJ8"
+        },
+        "knowsAbout": [
+          "GPS-denied navigation",
+          "GNSS-denied navigation",
+          "Assured PNT",
+          "Alternative PNT",
+          "Signals of opportunity navigation",
+          "Cellular navigation",
+          "Drone navigation",
+          "UAS autonomy",
+          "Anti-jamming navigation",
+          "GPS jamming and spoofing resilience",
+          "Counter-UAS",
+          "Drone detection",
+          "Passive radar",
+          "Passive bistatic radar",
+          "Micro-Doppler drone classification",
+          "IMSI-catcher detection",
+          "Electronic warfare",
+          "RF propagation modeling"
+        ],
+        "founder": {
+          "@id": "https://atsmus.com/#isaac-gurary"
+        },
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Isaac Gurary",
+            "jobTitle": "Chief Executive Officer",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/",
+            "@id": "https://atsmus.com/#isaac-gurary"
+          },
+          {
+            "@type": "Person",
+            "name": "Moshe Levin",
+            "jobTitle": "Chief Technology Officer",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/",
+            "honorificPrefix": "Dr."
+          },
+          {
+            "@type": "Person",
+            "name": "Eitan Deutscher",
+            "jobTitle": "VP of R&D",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/"
+          },
+          {
+            "@type": "Person",
+            "name": "Zalmy Gurary",
+            "jobTitle": "Chief Operating Officer",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/"
+          }
+        ],
+        "member": [
+          {
+            "@type": "Person",
+            "name": "William Grimsley",
+            "jobTitle": "Board of Advisors",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/",
+            "honorificPrefix": "Maj. Gen. (Ret.)",
+            "description": "Retired U.S. Army Major General; former Chief of Staff of U.S. Strategic Command and Military Assistant to the Secretary of Defense."
+          },
+          {
+            "@type": "Person",
+            "name": "Ian Saltz",
+            "jobTitle": "Senior Advisor, Board of Advisors",
+            "worksFor": {
+              "@id": "https://atsmus.com/#organization"
+            },
+            "url": "https://atsmus.com/leadership/",
+            "description": "Former Office of the Secretary of Defense (OSD) Pentagon strategist and Northrop Grumman capture executive."
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "ATSMUS platforms",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "ATSMUS AIR",
+                "description": "Plug-and-play tactical positioning payload providing continuous, GNSS-grade navigation for autonomous air and ground vehicles using ambient cellular signals of opportunity when GNSS is jammed, spoofed, or denied. Compatible with MAVLink, ROS 2, PX4, ArduPilot and ATAK.",
+                "category": "GPS-denied navigation / assured PNT payload",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "ATSMUS"
+                },
+                "manufacturer": {
+                  "@id": "https://atsmus.com/#organization"
+                },
+                "url": "https://atsmus.com/platforms/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "ATSMUS PDDR",
+                "description": "Passive bistatic radar sensor that detects, tracks and classifies drones from reflections of existing LTE/5G base-station signals, with zero RF emission.",
+                "category": "Passive counter-UAS (C-UAS) drone detection radar",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "ATSMUS"
+                },
+                "manufacturer": {
+                  "@id": "https://atsmus.com/#organization"
+                },
+                "url": "https://atsmus.com/platforms/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "ATSMUS SENTINEL",
+                "description": "Automated perimeter detection and geolocation of hostile rogue cellular base stations (IMSI-catchers / Stingrays) and electronic-warfare spoofing devices targeting military installations.",
+                "category": "Counter-surveillance / IMSI-catcher detection",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "ATSMUS"
+                },
+                "manufacturer": {
+                  "@id": "https://atsmus.com/#organization"
+                },
+                "url": "https://atsmus.com/platforms/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "AIRT ENGINE",
+                "description": "AI-accelerated 3D electromagnetic propagation digital twin that models radio coverage across terrain and urban canyons from 0 to 500 m+ altitude to plan assured-signal UAV routes before launch.",
+                "category": "RF propagation modeling / UAV mission planning",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "ATSMUS"
+                },
+                "manufacturer": {
+                  "@id": "https://atsmus.com/#organization"
+                },
+                "url": "https://atsmus.com/platforms/"
+              }
+            }
+          ]
+        }
       },
       {
         "@type": "WebSite",
@@ -35,7 +206,9 @@
         "name": "ATSMUS",
         "alternateName": "ATSMUS AeroTech",
         "url": "https://atsmus.com/",
-        "publisher": { "@id": "https://atsmus.com/#organization" }
+        "publisher": {
+          "@id": "https://atsmus.com/#organization"
+        }
       }
     ]
   }

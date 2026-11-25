@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://atsmus.com/</loc></url>
-  <url><loc>https://atsmus.com/platforms/</loc></url>
-  <url><loc>https://atsmus.com/missions/</loc></url>
-  <url><loc>https://atsmus.com/flight-heritage/</loc></url>
-  <url><loc>https://atsmus.com/leadership/</loc></url>
-  <url><loc>https://atsmus.com/contact/</loc></url>
+  <url><loc>https://atsmus.com/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://atsmus.com/platforms/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://atsmus.com/missions/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://atsmus.com/flight-heritage/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://atsmus.com/leadership/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://atsmus.com/contact/</loc><lastmod>2026-11-24</lastmod></url>
 </urlset>

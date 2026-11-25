@@ -1,0 +1,25 @@
+# ATSMUS AeroTech
+
+> ATSMUS AeroTech (atsmus.com) turns ambient cellular signals of opportunity into unjammable GPS-denied navigation for drones and autonomous vehicles, and into silent, zero-emission passive radar for counter-UAS (C-UAS) drone detection. Designed to meet NDAA and Blue UAS requirements. CAGE Code: 25JJ8.
+
+ATSMUS builds assured positioning, navigation and timing (assured PNT) and airspace-sensing systems for defense, homeland security and critical infrastructure. Its systems listen to existing LTE/5G cellular signals instead of satellites or their own transmitters, so they keep working when GPS/GNSS is jammed, spoofed or denied, and they emit no RF signature.
+
+## Platforms
+
+- [ATSMUS AIR](https://atsmus.com/platforms/): Plug-and-play tactical positioning payload that provides continuous, GNSS-grade navigation for autonomous air and ground vehicles using ambient cellular signals of opportunity (SoP) when GNSS is jammed, spoofed or denied. Zero RF emission. Compatible with MAVLink, ROS 2, PX4, ArduPilot and ATAK. Engineered for Group 1–3 UAS and loitering munitions (low SWaP-C).
+- [ATSMUS PDDR](https://atsmus.com/platforms/): Passive bistatic radar that detects, tracks and classifies drones (micro-Doppler) from reflections of existing LTE/5G base-station signals. Emits zero RF energy; no spectrum license required.
+- [ATSMUS SENTINEL](https://atsmus.com/platforms/): Automated perimeter detection and geolocation of hostile rogue cellular base stations (IMSI-catchers / Stingrays) and electronic-warfare spoofing devices targeting military installations and tactical command links.
+- [AIRT ENGINE](https://atsmus.com/platforms/): AI-accelerated 3D electromagnetic propagation digital twin that models radio coverage across terrain and urban canyons from 0 to 500 m+ altitude to plan assured-signal UAV routes before launch.
+
+## Missions
+
+- [Missions](https://atsmus.com/missions/): GPS-denied navigation for DoD tactical UAS through jamming and spoofing; passive drone detection for DHS and border security; low-altitude perimeter protection for bases, airfields and critical infrastructure; drift-free positioning when visual navigation fails in fog, smoke, dust or darkness.
+
+## Flight heritage
+
+- [Flight test results](https://atsmus.com/flight-heritage/): One-hour rotary-wing flight with GNSS-grade positioning computed independently of GNSS; continuous waypoint navigation along a 400 km high-altitude alpine corridor at 4,000 m; anchorless navigation that works without knowing cell-tower positions or network topology.
+
+## Company
+
+- [Leadership and Board of Advisors](https://atsmus.com/leadership/): Isaac Gurary (CEO), Dr. Moshe Levin (CTO), Eitan Deutscher (VP of R&D), Zalmy Gurary (COO). Board of Advisors: Maj. Gen. (Ret.) William Grimsley, former Chief of Staff of U.S. Strategic Command; Ian Saltz, former OSD Pentagon strategist and Northrop Grumman capture executive.
+- [Request an evaluation kit](https://atsmus.com/contact/): Evaluation hardware and Technical Data Packages are provided under NDA to verified defense agencies, primes and airframe manufacturers. Contact: info@atsmus.com.
