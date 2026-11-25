@@ -8,45 +8,50 @@ after changing it, run  `python3 tools/build_section_pages.py`  from the repo
 root and commit the regenerated folders together with index.html.
 """
 import html
+import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://atsmus.com"
-BRAND = "ATSMUS AeroTech"
 
-# section id on the homepage -> (folder / URL slug, page title, meta description)
+# section id on the homepage -> (folder / URL slug, short name, search title, meta description)
+# The search title and description only show in Google results and the browser tab.
 PAGES = {
     "missions": (
         "missions",
         "Missions",
-        "Built for contested airspace: GNSS-grade autonomy for DoD tactical UAS, "
-        "passive drone radar for DHS and border security, and perimeter protection "
-        "for bases and critical infrastructure.",
+        "Drone Navigation Through Jamming & Counter-UAS Missions | ATSMUS",
+        "GPS-denied navigation for DoD tactical UAS that holds through jamming and spoofing, "
+        "passive drone detection for DHS and border security, and perimeter protection for bases.",
     ),
     "platform": (
         "platforms",
         "Platforms",
-        "Software-defined airspace platforms: ATSMUS AIR GNSS-denied PNT, ATSMUS PDDR "
-        "covert C-UAS, SENTINEL counter-intelligence and the AIRT 3D spectrum twin engine.",
+        "GPS-Denied Navigation & Passive C-UAS Radar Platforms | ATSMUS",
+        "ATSMUS AIR cellular GPS-denied navigation payload, ATSMUS PDDR passive bistatic "
+        "counter-UAS radar, SENTINEL IMSI-catcher detection and the AIRT RF planning engine.",
     ),
     "trials": (
         "flight-heritage",
         "Flight Heritage",
-        "Proven in live flight: GNSS-grade rotary flight outage tests, a 400 km "
-        "high-altitude alpine corridor, and anchorless, infrastructure-agnostic navigation.",
+        "GPS-Denied Navigation Flight Test Results | ATSMUS AeroTech",
+        "Live-flight proof of GPS-denied drone navigation: a GNSS-grade one-hour rotary outage "
+        "test, a 400 km alpine corridor at 4,000 m, and anchorless cellular navigation.",
     ),
     "leadership": (
         "leadership",
         "Leadership",
-        "Atsmus leadership: decades of specialized signals IP, pioneers of global "
-        "cellular positioning architectures with knowledge of Pentagon weapon systems requirements.",
+        "Leadership & Board of Advisors | ATSMUS AeroTech",
+        "The ATSMUS team behind cellular positioning and passive radar, and its Board of Advisors: "
+        "Maj. Gen. (Ret.) William Grimsley and former OSD Pentagon strategist Ian Saltz.",
     ),
     "contact": (
         "contact",
         "Contact & Request Access",
-        "Request access to ATSMUS evaluation hardware and Technical Data Packages, "
-        "furnished under NDA to verified defense agencies, primes and airframe manufacturers.",
+        "Request an Evaluation Kit | ATSMUS AeroTech",
+        "Request an ATSMUS evaluation kit or Technical Data Package for GPS-denied navigation and "
+        "passive counter-UAS detection. Designed to meet NDAA and Blue UAS requirements. CAGE 25JJ8.",
     ),
 }
 
@@ -82,17 +87,45 @@ def set_meta(head: str, pattern: str, value: str) -> str:
     return new
 
 
-def build_head(head: str, slug: str, title: str, desc: str) -> str:
-    full_title = f"{title} | {BRAND}"
+def build_head(head: str, slug: str, name: str, title: str, desc: str) -> str:
     url = f"{SITE}/{slug}/"
-    head = re.sub(r"<title>.*?</title>", f"<title>{html.escape(full_title)}</title>", head, count=1)
+    head = re.sub(r"<title>.*?</title>", f"<title>{html.escape(title)}</title>", head, count=1)
     head = set_meta(head, r'(<meta name="description" content=")[^"]*(" />)', desc)
-    head = set_meta(head, r'(<meta property="og:title" content=")[^"]*(" />)', full_title)
+    head = set_meta(head, r'(<meta property="og:title" content=")[^"]*(" />)', title)
     head = set_meta(head, r'(<meta property="og:description" content=")[^"]*(" />)', desc)
     head = head.replace(f'<link rel="canonical" href="{SITE}/" />', f'<link rel="canonical" href="{url}" />')
     head = head.replace(f'<meta property="og:url" content="{SITE}/" />', f'<meta property="og:url" content="{url}" />')
-    # The organization / website data stays on the homepage only.
-    head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', "", head, count=1, flags=re.S)
+    # The full organization data stays on the homepage; each section page describes itself
+    # and its place in the site (shown by Google as "atsmus.com > Platforms").
+    page_ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": url,
+                "url": url,
+                "name": title,
+                "description": desc,
+                "isPartOf": {"@id": f"{SITE}/#website"},
+                "about": {"@id": f"{SITE}/#organization"},
+                "breadcrumb": {"@id": url + "#breadcrumb"},
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": url + "#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "ATSMUS", "item": f"{SITE}/"},
+                    {"@type": "ListItem", "position": 2, "name": name, "item": url},
+                ],
+            },
+        ],
+    }
+    ld = json.dumps(page_ld, indent=2, ensure_ascii=False).replace("\n", "\n  ")
+    head = re.sub(
+        r'  <script type="application/ld\+json">.*?</script>',
+        lambda m: '  <script type="application/ld+json">\n  ' + ld + "\n  </script>",
+        head, count=1, flags=re.S,
+    )
     return head
 
 
@@ -119,7 +152,7 @@ def main():
     )
     trailing = body[main_script_match.end():]  # nav click handler + </body></html>
 
-    for sid, (slug, title, desc) in PAGES.items():
+    for sid, (slug, name, title, desc) in PAGES.items():
         section = re.search(rf"\n *<!-- =+[^>]*-->\n  <section id=\"{sid}\".*?</section>\n", body, re.S)
         assert section, sid
         content = section.group(0)
@@ -168,7 +201,7 @@ def main():
             + "\n  </script>"
         )
 
-        page_head = build_head(head, slug, title, desc)
+        page_head = build_head(head, slug, name, title, desc)
         if "threeHeroCanvas" not in ids and "missionsPanoramaContainer" not in ids:
             page_head = re.sub(
                 r'\n  <!-- Three\.js[^\n]*-->\n  <script src="[^"]*three[^"]*"></script>\n', "\n", page_head
